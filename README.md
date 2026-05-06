@@ -2,7 +2,9 @@
 
 A comprehensive, battle-tested OpenCode configuration for polyglot development and cybersecurity work.
 
-Built for **Arch Linux** (CachyOS) — works on any Arch-based distro. Uses **DeepSeek V4 Pro** as the primary model.
+Built for **Arch Linux** (CachyOS) and **Ubuntu/Debian**. Uses **DeepSeek V4 Pro** as the primary model.
+
+Full package lists for both distros: **[REQUIREMENTS.md](REQUIREMENTS.md)**
 
 ## Quick Start (Fresh Arch Install)
 
@@ -32,6 +34,32 @@ export DEEPSEEK_API_KEY="sk-your-key-here"
 # 7. Launch
 opencode
 # Then run:  /connect   → select DeepSeek
+```
+### Quick Start (Fresh Ubuntu / Debian)
+
+```bash
+# 1. Install system packages
+sudo apt update && sudo apt install -y python3 python3-pip python3-venv rustc cargo nodejs npm gdb binwalk john hashcat foremost steghide libimage-exiftool-perl wireshark tshark git curl wget fish docker.io kubectl gh nmap sqlmap radare2 golang-go
+sudo snap install go --classic gopls ghidra
+pip install uv ruff pyright
+pip install volatility3
+go install golang.org/x/tools/gopls@latest
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+npm install -g @biomejs/biome typescript
+nuclei -update-templates
+
+# 2. Install OpenCode
+curl -fsSL https://opencode.ai/install | bash
+
+# 3. Clone this config
+mkdir -p ~/.config
+git clone https://github.com/137-Trimethylxanthin/openCodeConfig.git ~/tmp-setup
+cp -r ~/tmp-setup/.config/opencode ~/.config/opencode
+rm -rf ~/tmp-setup
+
+# 4. Set API key & launch
+export DEEPSEEK_API_KEY="sk-your-key-here"
+opencode
 ```
 
 ## What's Included

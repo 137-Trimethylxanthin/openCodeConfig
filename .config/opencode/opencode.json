@@ -1,0 +1,372 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "shell": "fish",
+  "autoupdate": "notify",
+  "model": "deepseek/deepseek-v4-pro",
+  "small_model": "deepseek/deepseek-v4-flash",
+  "default_agent": "build",
+
+  "plugin": [
+    "opencode-notify",
+    "opencode-shell-strategy",
+    "opencode-wakatime",
+    "opencode-vibeguard",
+    "opencode-supermemory"
+  ],
+
+  "formatter": {
+    "prettier": { "disabled": true },
+    "biome": {},
+    "ruff": {
+      "command": ["ruff", "format", "$FILE"],
+      "extensions": [".py", ".pyi"]
+    },
+    "cargofmt": {},
+    "gofmt": {}
+  },
+
+  "lsp": true,
+
+  "instructions": [
+    "../opencode/AGENTS.md"
+  ],
+
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp"],
+      "enabled": true
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "{env:HOME}"],
+      "enabled": true
+    },
+    "seqthink": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "enabled": true
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp"],
+      "enabled": true
+    },
+    "docker": {
+      "type": "local",
+      "command": ["npx", "-y", "docker-mcp"],
+      "enabled": true
+    },
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@fre4x/github"],
+      "enabled": true,
+      "environment": {
+        "GITHUB_TOKEN": "{env:GITHUB_TOKEN}"
+      }
+    },
+    "browser-use": {
+      "type": "local",
+      "command": ["npx", "-y", "browser-use-mcp"],
+      "enabled": true
+    },
+    "nmap": {
+      "type": "local",
+      "command": ["npx", "-y", "@ebowwa/mcp-nmap"],
+      "enabled": true
+    },
+    "nuclei": {
+      "type": "local",
+      "command": ["npx", "-y", "gc-nuclei-mcp"],
+      "enabled": true
+    },
+    "sqlmap": {
+      "type": "local",
+      "command": ["npx", "-y", "@iflow-mcp/stanleyj03-sqlmap-mcp"],
+      "enabled": true
+    },
+    "osint": {
+      "type": "local",
+      "command": ["npx", "-y", "osint-mcp-server"],
+      "enabled": true,
+      "environment": {
+        "SHODAN_API_KEY": "{env:SHODAN_API_KEY}",
+        "VIRUSTOTAL_API_KEY": "{env:VIRUSTOTAL_API_KEY}",
+        "SECURITYTRAILS_API_KEY": "{env:SECURITYTRAILS_API_KEY}",
+        "CENSYS_API_ID": "{env:CENSYS_API_ID}",
+        "CENSYS_API_SECRET": "{env:CENSYS_API_SECRET}"
+      }
+    },
+    "mitre-attack": {
+      "type": "local",
+      "command": ["npx", "-y", "@imouiche/mitre-attack-mcp-server"],
+      "enabled": true
+    },
+    "cve-search": {
+      "type": "local",
+      "command": ["npx", "-y", "@iflow-mcp/cyreslab-circl-cve-search-mcp-server"],
+      "enabled": true
+    },
+    "wayback": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-wayback-machine"],
+      "enabled": true
+    },
+    "burp-bridge": {
+      "type": "local",
+      "command": ["npx", "-y", "@iflow-mcp/fwaeytens-burp-mcp-bridge"],
+      "enabled": false
+    },
+    "cheatengine": {
+      "type": "local",
+      "command": ["npx", "-y", "cheatengine"],
+      "enabled": false
+    },
+    "js-reverse": {
+      "type": "local",
+      "command": ["npx", "-y", "js-reverse-mcp"],
+      "enabled": true
+    },
+    "webhook": {
+      "type": "local",
+      "command": ["npx", "-y", "@kevinwatt/mcp-webhook"],
+      "enabled": true
+    },
+    "pentest-mcp": {
+      "type": "local",
+      "command": ["npx", "-y", "pentest-mcp"],
+      "enabled": true
+    }
+  },
+
+  "permission": {
+    "*": "allow",
+    "bash": {
+      "git push*": "ask",
+      "rm -rf*": "ask",
+      "sudo*": "ask",
+      "docker system prune*": "ask",
+      "kubectl delete*": "ask",
+      "*": "allow"
+    },
+    "webfetch": "allow"
+  },
+
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  },
+
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      ".git/**",
+      "target/**",
+      "__pycache__/**",
+      ".venv/**",
+      ".next/**",
+      ".astro/**",
+      "coverage/**",
+      ".cache/**"
+    ]
+  },
+
+  "experimental": {},
+
+  "agent": {
+    "plan": {
+      "model": "deepseek/deepseek-v4-flash"
+    },
+    "code-reviewer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": "allow"
+      }
+    },
+    "optimizer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "deny" }
+      }
+    },
+    "security-auditor": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.0,
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "docs-writer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-flash",
+      "temperature": 0.2,
+      "permission": {
+        "bash": "deny"
+      }
+    },
+    "debugger": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "pentester": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "reverse-engineer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "osint-agent": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "webfetch": "allow",
+        "bash": "allow"
+      }
+    },
+    "exploit-dev": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "redteam": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "blueteam": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "crypto-agent": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.0,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "payload-crafter": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "ctf-player": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "deep-review": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git blame*": "allow",
+          "wc *": "allow",
+          "find *": "allow"
+        }
+      }
+    },
+    "pr-reviewer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "webfetch": "allow",
+        "bash": {
+          "*": "deny",
+          "gh pr*": "allow",
+          "gh api*": "allow",
+          "gh auth*": "allow",
+          "git fetch*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git branch*": "allow",
+          "git remote*": "allow"
+        }
+      }
+    }
+  }
+}

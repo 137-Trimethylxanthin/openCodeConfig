@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# sudo-askpass helper: uses SUDO_PASSWORD env var or prompts via zenity/kdialog
+# Place this at ~/.config/opencode/bin/sudo-askpass
+
+if [[ -n "$SUDO_PASSWORD" ]]; then
+  echo "$SUDO_PASSWORD"
+elif command -v zenity &>/dev/null; then
+  zenity --password --title="sudo password" 2>/dev/null
+elif command -v kdialog &>/dev/null; then
+  kdialog --password "sudo password" 2>/dev/null
+elif command -v ssh-askpass &>/dev/null; then
+  ssh-askpass "sudo password"
+else
+  echo "No password available" >&2
+  exit 1
+fi

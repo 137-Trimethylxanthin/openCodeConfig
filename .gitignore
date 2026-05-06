@@ -1,0 +1,16 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Package lockfiles
+bun.lock
+package-lock.json
+
+# Don't ignore the opencode config package.json and node_modules
+# (that's handled by .config/opencode/.gitignore)

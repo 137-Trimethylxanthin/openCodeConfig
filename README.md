@@ -81,20 +81,37 @@ opencode
 | **Secure Dev** | skillssafe |
 | **Disabled** | burp-bridge, cheatengine, sonarqube, gitlab, spotify |
 
-### Agents (34)
+### Primary Agents (9)
+
+Available directly or as default agent:
 
 | Agent | Role |
 |-------|------|
-| **plan** / build | Primary agents — planning vs full dev |
-| **coder** / maker | General-purpose and production-grade coding |
+| **build** | Default — full development with all tools |
+| **plan** | Planning and analysis without code changes |
+| **maker** | Production-grade implementation |
 | **fullstack-dev** | End-to-end full-stack features |
+| **scrum** | Orchestrates full development lifecycle |
+| **dev-lead** | Delegates tasks, reviews outputs, ensures quality |
+| **devops** | Docker, CI/CD, deployments, monitoring |
+| **ctf-player** | All CTF categories |
+| **hacker** | Penetration testing, red team, vulnerability research |
+| **startup-mvp** | Rapid prototyping and MVPs |
+
+### Subagents (25)
+
+Specialized agents invoked by primary agents:
+
+| Agent | Role |
+|-------|------|
+| **coder** | General-purpose coding |
 | **ui-builder** | Frontend UI components and layouts |
 | **architect** | System architecture and tech stack |
 | **data-modeler** | Database schemas, migrations, ORM |
-| **devops** | Docker, CI/CD, deployments, monitoring |
 | **api-designer** | REST/GraphQL/gRPC API design |
-| **code-reviewer** / deep-review | Code review (standard + architecture-level) |
-| **pr-reviewer** | GitHub PR review |
+| **code-reviewer** | Code review for best practices and bugs |
+| **deep-review** | Architecture-level review (SOLID, security, perf) |
+| **pr-reviewer** | GitHub PR review with inline comments |
 | **debugger** | Root-cause bug investigation |
 | **optimizer** | Performance, memory, bundle size |
 | **security-auditor** | Dependency audit, CVE scanning |
@@ -104,9 +121,7 @@ opencode
 | **product-manager** | Requirements, user stories, prioritization |
 | **planning-agent** | Strategic planning and estimation |
 | **research-lead** | Technology research and evaluation |
-| **scrum** / dev-lead | Project orchestration |
 | **todo-creator** | Task tracking and project boards |
-| **startup-mvp** | Rapid prototyping and MVPs |
 | **pentester** | Web app pentesting (OWASP Top 10) |
 | **exploit-dev** | PoC exploit development |
 | **redteam** | Campaign planning, C2, lateral movement |
@@ -115,8 +130,6 @@ opencode
 | **osint-agent** | Domain/IP/email OSINT |
 | **crypto-agent** | Cryptography attacks, CTF crypto |
 | **payload-crafter** | Shellcode, reverse shells, evasion |
-| **ctf-player** | All CTF categories |
-| **hacker** | Full red team / pentest operations |
 
 ### Slash Commands (16)
 

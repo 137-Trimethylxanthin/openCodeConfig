@@ -367,6 +367,102 @@
           "git remote*": "allow"
         }
       }
+    },
+    "architect": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "ls*": "allow",
+          "find*": "allow",
+          "tree*": "allow",
+          "wc*": "allow"
+        }
+      }
+    },
+    "maker": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "fullstack-dev": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "api-designer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "data-modeler": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "deny" }
+      }
+    },
+    "devops": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "test-writer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-flash",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "ui-builder": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "deny" }
+      }
+    },
+    "startup-mvp": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.3,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" }
+      }
     }
   }
 }

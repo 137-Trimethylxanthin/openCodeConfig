@@ -12,7 +12,11 @@
     "opencode-shell-strategy",
     "opencode-wakatime",
     "opencode-vibeguard",
-    "opencode-supermemory"
+    "opencode-supermemory",
+    "opencode-skills-collection",
+    "opencode-scheduler",
+    "opencode-plugin-langfuse",
+    "opencode-subagent-statusline"
   ],
 
   "formatter": {
@@ -153,6 +157,71 @@
       "type": "local",
       "command": ["npx", "-y", "pentest-mcp"],
       "enabled": true
+    },
+    "semgrep": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-server-semgrep"],
+      "enabled": true
+    },
+    "wireshark": {
+      "type": "local",
+      "command": ["uvx", "wireshark-mcp"],
+      "enabled": true
+    },
+    "skillssafe": {
+      "type": "local",
+      "command": ["npx", "-y", "skillssafe-mcp"],
+      "enabled": true
+    },
+    "tavily": {
+      "type": "local",
+      "command": ["npx", "-y", "tavily-mcp"],
+      "enabled": true
+    },
+    "firecrawl": {
+      "type": "local",
+      "command": ["npx", "-y", "firecrawl-mcp"],
+      "enabled": true
+    },
+    "brave-search": {
+      "type": "local",
+      "command": ["npx", "-y", "@brave/brave-search-mcp-server"],
+      "enabled": true
+    },
+    "exa": {
+      "type": "local",
+      "command": ["npx", "-y", "exa-mcp-server"],
+      "enabled": true
+    },
+    "sonarqube": {
+      "type": "local",
+      "command": ["npx", "-y", "sonarqube-api-mcp"],
+      "enabled": false
+    },
+    "postgres": {
+      "type": "local",
+      "command": ["npx", "-y", "enhanced-postgres-mcp-server"],
+      "enabled": true
+    },
+    "sqlite": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-server-sqlite-npx"],
+      "enabled": true
+    },
+    "gitlab": {
+      "type": "local",
+      "command": ["npx", "-y", "efficient-gitlab-mcp-server"],
+      "enabled": false
+    },
+    "perplexity": {
+      "type": "local",
+      "command": ["npx", "-y", "@perplexity-ai/mcp-server"],
+      "enabled": true
+    },
+    "spotify": {
+      "type": "local",
+      "command": ["npx", "-y", "spotify-mcp"],
+      "enabled": false
     }
   },
 
@@ -462,6 +531,109 @@
         "edit": "allow",
         "bash": "allow",
         "task": { "*": "allow" }
+      }
+    },
+    "planning-agent": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "ls*": "allow",
+          "find*": "allow",
+          "tree*": "allow",
+          "wc*": "allow",
+          "rg *": "allow",
+          "git ls-files*": "allow"
+        }
+      }
+    },
+    "todo-creator": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "dev-lead": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" },
+        "webfetch": "allow"
+      }
+    },
+    "security-lead": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" },
+        "webfetch": "allow"
+      }
+    },
+    "research-lead": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" },
+        "webfetch": "allow"
+      }
+    },
+    "product-manager": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" },
+        "webfetch": "allow"
+      }
+    },
+    "coder": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "scrum-master": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" }
+      }
+    },
+    "scrum": {
+      "mode": "all",
+      "model": "deepseek/deepseek-v4-pro",
+      "temperature": 0.2,
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": { "*": "allow" },
+        "webfetch": "allow"
       }
     }
   }

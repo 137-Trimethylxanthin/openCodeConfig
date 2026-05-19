@@ -22,11 +22,10 @@ npm install -g @biomejs/biome typescript
 
 # 4. Install OpenCode
 curl -fsSL https://opencode.ai/install | bash
-# OR on Arch: sudo pacman -S opencode
 
 # 5. Clone this config
 mkdir -p ~/.config
-git clone https://github.com/YOUR_USER/opencode-setup.git ~/tmp-setup
+git clone https://github.com/137-Trimethylxanthin/openCodeConfig.git ~/tmp-setup
 cp -r ~/tmp-setup/.config/opencode ~/.config/opencode
 rm -rf ~/tmp-setup
 
@@ -35,8 +34,8 @@ export DEEPSEEK_API_KEY="sk-your-key-here"
 
 # 7. Launch
 opencode
-# Then run:  /connect   → select DeepSeek
 ```
+
 ### Quick Start (Fresh Ubuntu / Debian)
 
 ```bash
@@ -66,40 +65,61 @@ opencode
 
 ## What's Included
 
-### MCP Servers (22)
+### MCP Servers (35)
+
 | Category | Servers |
 |----------|---------|
-| **Dev & Docs** | ctx7 (Context7), gh_grep (GitHub code search) |
-| **Browser** | playwright (Chrome+Firefox+WebKit), chrome-devtools, browser-use |
-| **Infra** | docker, github, filesystem |
-| **AI** | seqthink (structured thinking), memory (knowledge graph) |
-| **Pentest** | pentest-mcp, nmap (@ebowwa, 18 tools), nuclei, sqlmap |
-| **OSINT** | osint-mcp-server (Shodan+VT+SecurityTrails+Censys+DNS+WHOIS+crt.sh+BGP), wayback |
-| **Threat Intel** | mitre-attack (50+ tools), cve-search (CIRCL) |
-| **Reverse Eng** | js-reverse (JS deobfuscation), cheatengine (disabled), burp-bridge (disabled) |
-| **Web Testing** | webhook (SSRF/blind testing) |
+| **Dev & Docs** | context7, gh_grep, semgrep |
+| **Browser** | playwright, chrome-devtools, browser-use |
+| **Infra** | docker, github, filesystem, postgres, sqlite |
+| **AI & Search** | seqthink, memory, tavily, firecrawl, brave-search, exa, perplexity |
+| **Pentest** | pentest-mcp, nmap, nuclei, sqlmap, webhook |
+| **OSINT** | osint (Shodan+VT+SecurityTrails+Censys+DNS+WHOIS+crt.sh+BGP), wayback |
+| **Threat Intel** | mitre-attack, cve-search |
+| **Reverse Eng** | js-reverse |
+| **Network** | wireshark |
+| **Secure Dev** | skillssafe |
+| **Disabled** | burp-bridge, cheatengine, sonarqube, gitlab, spotify |
 
-### Agents (15)
-| Agent | Type | Role |
-|-------|------|------|
-| **plan** | primary | Planning/analysis without code changes |
-| **build** | primary | Default — full dev with all tools |
-| **code-reviewer** | subagent | Code review (read-only) |
-| **debugger** | subagent | Root-cause bug investigation |
-| **optimizer** | subagent | Performance/memory/bundle optimization |
-| **security-auditor** | subagent | Dependency audit, CVE scanning |
-| **docs-writer** | subagent | Documentation only |
-| **pentester** | subagent | Web app pentesting (OWASP Top 10) |
-| **reverse-engineer** | subagent | Binary/JS RE, Ghidra/GDB/Frida |
-| **osint-agent** | subagent | Domain/IP/email OSINT |
-| **exploit-dev** | subagent | PoC exploit development |
-| **redteam** | subagent | Campaign planning, C2, lateral movement |
-| **blueteam** | subagent | Detection engineering, Sigma/YARA, IR |
-| **crypto-agent** | subagent | Cryptography attacks, CTF crypto |
-| **payload-crafter** | subagent | Shellcode, reverse shells, evasion |
-| **ctf-player** | subagent | All CTF categories |
+### Agents (34)
 
-### Slash Commands (15)
+| Agent | Role |
+|-------|------|
+| **plan** / build | Primary agents — planning vs full dev |
+| **coder** / maker | General-purpose and production-grade coding |
+| **fullstack-dev** | End-to-end full-stack features |
+| **ui-builder** | Frontend UI components and layouts |
+| **architect** | System architecture and tech stack |
+| **data-modeler** | Database schemas, migrations, ORM |
+| **devops** | Docker, CI/CD, deployments, monitoring |
+| **api-designer** | REST/GraphQL/gRPC API design |
+| **code-reviewer** / deep-review | Code review (standard + architecture-level) |
+| **pr-reviewer** | GitHub PR review |
+| **debugger** | Root-cause bug investigation |
+| **optimizer** | Performance, memory, bundle size |
+| **security-auditor** | Dependency audit, CVE scanning |
+| **security-lead** | Security program management |
+| **test-writer** | Unit, integration, E2E tests |
+| **docs-writer** | Documentation only |
+| **product-manager** | Requirements, user stories, prioritization |
+| **planning-agent** | Strategic planning and estimation |
+| **research-lead** | Technology research and evaluation |
+| **scrum** / dev-lead | Project orchestration |
+| **todo-creator** | Task tracking and project boards |
+| **startup-mvp** | Rapid prototyping and MVPs |
+| **pentester** | Web app pentesting (OWASP Top 10) |
+| **exploit-dev** | PoC exploit development |
+| **redteam** | Campaign planning, C2, lateral movement |
+| **blueteam** | Detection engineering, Sigma/YARA, IR |
+| **reverse-engineer** | Binary/JS RE, Ghidra/GDB/Frida |
+| **osint-agent** | Domain/IP/email OSINT |
+| **crypto-agent** | Cryptography attacks, CTF crypto |
+| **payload-crafter** | Shellcode, reverse shells, evasion |
+| **ctf-player** | All CTF categories |
+| **hacker** | Full red team / pentest operations |
+
+### Slash Commands (16)
+
 | Command | Agent | Purpose |
 |---------|-------|---------|
 | `/test` | build | Run full test suite, fix failures |
@@ -107,6 +127,7 @@ opencode
 | `/fmt` | build | Format all code |
 | `/biome` | build | Biome lint+format (JS/TS/HTML/CSS) |
 | `/review` | code-reviewer | Code review staged changes |
+| `/pr-review` | pr-reviewer | GitHub PR review |
 | `/audit` | security-auditor | Dependency security audit |
 | `/optimize` | optimizer | Performance analysis |
 | `/init-project` | build | Deep project analysis + AGENTS.md |
@@ -118,7 +139,8 @@ opencode
 | `/ctf <challenge>` | ctf-player | CTF challenge solver |
 | `/forensics <file>` | ctf-player | Forensic artifact analysis |
 
-### Skills (7)
+### Skills (9)
+
 | Skill | Content |
 |-------|---------|
 | `git-release` | Semantic versioning, changelog generation |
@@ -129,8 +151,10 @@ opencode
 | `crypto-recipes` | RSA/AES/ECC attacks, hash cracking |
 | `payload-crafting` | Reverse shells, shellcode, AMSI bypass |
 | `programming-resources` | Curated APIs, docs, tools, CTF resources |
+| `passover` | Passover/holiday utilities |
 
-### Plugins (6)
+### Plugins (10)
+
 | Plugin | Purpose |
 |--------|---------|
 | `opencode-notify` | Desktop notifications on task completion |
@@ -138,16 +162,21 @@ opencode
 | `opencode-vibeguard` | Redact secrets/PII before LLM calls |
 | `opencode-wakatime` | Time tracking integration |
 | `opencode-supermemory` | Persistent memory across sessions |
+| `opencode-skills-collection` | Community skills bundle |
+| `opencode-scheduler` | Scheduled task execution |
+| `opencode-plugin-langfuse` | LLM observability and tracing |
+| `opencode-subagent-statusline` | Subagent status in TUI |
 | `sudo-plugin.ts` (custom) | Auto-inject SUDO_ASKPASS for sudo commands |
 
 ### Custom Themes (3)
+
 | Theme | Style |
 |-------|-------|
 | `catppuccin-mocha` | Catppuccin Mocha (default) |
 | `dracula` | Dracula |
 | `rose-pine` | Rosé Pine |
 
-Plus 11 built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa, nord, matrix, one-dark, system, opencode
+Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa, nord, matrix, one-dark, system, opencode
 
 ## File Structure
 
@@ -156,22 +185,31 @@ Plus 11 built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanag
 ├── opencode.json          # Main config — model, MCPs, formatters, permissions, agents
 ├── AGENTS.md              # Global coding rules for 8+ languages
 ├── tui.json               # TUI settings — theme, mouse, scroll
-├── agents/                # 15 agent definitions (markdown)
-│   ├── code-reviewer.md   ├── debugger.md       ├── docs-writer.md
-│   ├── optimizer.md       ├── security-auditor.md
-│   ├── pentester.md       ├── reverse-engineer.md ├── osint-agent.md
-│   ├── exploit-dev.md     ├── redteam.md         ├── blueteam.md
-│   ├── crypto-agent.md    ├── payload-crafter.md └── ctf-player.md
-├── commands/              # 15 slash command definitions (markdown)
+├── agents/                # 34 agent definitions (markdown)
+│   ├── plan.md / build.md                      # Primary agents
+│   ├── coder.md  ├── maker.md  ├── fullstack-dev.md  ├── ui-builder.md
+│   ├── architect.md  ├── data-modeler.md  ├── api-designer.md
+│   ├── devops.md  ├── dev-lead.md  ├── scrum.md  ├── todo-creator.md
+│   ├── code-reviewer.md  ├── deep-review.md  ├── pr-reviewer.md
+│   ├── debugger.md  ├── optimizer.md  ├── test-writer.md
+│   ├── security-auditor.md  ├── security-lead.md
+│   ├── docs-writer.md  ├── product-manager.md
+│   ├── planning-agent.md  ├── research-lead.md  ├── startup-mvp.md
+│   ├── pentester.md  ├── exploit-dev.md  ├── redteam.md  ├── blueteam.md
+│   ├── reverse-engineer.md  ├── osint-agent.md  ├── hacker.md
+│   ├── crypto-agent.md  ├── payload-crafter.md  └── ctf-player.md
+├── commands/              # 16 slash command definitions (markdown)
 │   ├── test.md  ├── lint.md  ├── fmt.md  ├── biome.md
-│   ├── review.md  ├── audit.md  ├── optimize.md  ├── init-project.md
-│   ├── pentest.md  ├── recon.md  ├── threat-model.md
-│   ├── exploit.md  ├── payload.md  ├── ctf.md  └── forensics.md
-├── skills/                # 7 reusable skill definitions
+│   ├── review.md  ├── pr-review.md  ├── audit.md  ├── optimize.md
+│   ├── init-project.md  ├── pentest.md  ├── recon.md
+│   ├── threat-model.md  ├── exploit.md  ├── payload.md
+│   ├── ctf.md  └── forensics.md
+├── skills/                # 9 reusable skill definitions
 │   ├── git-release/       ├── pr-review/
 │   ├── pentest-checklist/ ├── ctf-methodology/
 │   ├── threat-hunting/    ├── crypto-recipes/
-│   ├── payload-crafting/  └── programming-resources/
+│   ├── payload-crafting/  ├── programming-resources/
+│   └── passover/
 ├── themes/                # 3 custom theme files
 │   ├── catppuccin-mocha.json  ├── dracula.json  └── rose-pine.json
 ├── plugins/               # Custom local plugins
@@ -189,15 +227,15 @@ export DEEPSEEK_API_KEY="sk-..."       # Your DeepSeek API key
 # Optional — enables additional MCP features
 export GITHUB_TOKEN="ghp_..."          # GitHub API access
 export CONTEXT7_API_KEY="..."          # Higher rate limits on docs search
-export SHODAN_API_KEY="..."           # Shodan OSINT queries
-export VIRUSTOTAL_API_KEY="..."       # Malware analysis
+export SHODAN_API_KEY="..."            # Shodan OSINT queries
+export VIRUSTOTAL_API_KEY="..."        # Malware analysis
 export SECURITYTRAILS_API_KEY="..."   # DNS/domain OSINT
-export CENSYS_API_ID="..."            # Internet scanning OSINT
-export CENSYS_API_SECRET="..."        # Internet scanning OSINT
+export CENSYS_API_ID="..."             # Internet scanning OSINT
+export CENSYS_API_SECRET="..."         # Internet scanning OSINT
 
 # Optional — sudo plugin
-export SUDO_PASSWORD="..."            # Auto-fill sudo passwords
-export OPENCODE_SUDO_ENABLED="1"      # Enable GUI password prompt
+export SUDO_PASSWORD="..."             # Auto-fill sudo passwords
+export OPENCODE_SUDO_ENABLED="1"       # Enable GUI password prompt
 ```
 
 ## Languages Supported

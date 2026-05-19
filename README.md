@@ -1,3 +1,5 @@
+# To feed toe AI clusterfuck
+
 # OpenCode Ultimate Setup
 
 A comprehensive, battle-tested OpenCode configuration for polyglot development and cybersecurity work.

@@ -1,4 +1,4 @@
-# To feed toe AI clusterfuck
+# To feed the AI clusterfuck
 
 # OpenCode Ultimate Setup
 

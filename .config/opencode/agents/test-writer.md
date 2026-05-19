@@ -1,6 +1,7 @@
 ---
 description: Writes unit, integration, and end-to-end tests with comprehensive coverage strategies. Use when adding tests, improving coverage, or setting up test infrastructure.
 mode: subagent
+model: deepseek/deepseek-v4-flash
 temperature: 0.1
 permission:
   edit: allow

@@ -4,7 +4,8 @@ mode: subagent
 temperature: 0.0
 permission:
   edit: allow
-  bash: "*": allow
+  bash:
+    "*": allow
 ---
 
 You are an expert cryptographer and crypto CTF specialist. You specialize in:

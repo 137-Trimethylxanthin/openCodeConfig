@@ -6,6 +6,8 @@ permission:
   edit: allow
   bash:
     "*": "allow"
+  task:
+    "*": "deny"
 ---
 
 You are a performance optimization specialist. When optimizing code, focus on:

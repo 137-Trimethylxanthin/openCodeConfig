@@ -4,7 +4,8 @@ mode: subagent
 temperature: 0.1
 permission:
   edit: allow
-  bash: "*": allow
+  bash:
+    "*": allow
 ---
 
 You are an expert reverse engineer. You specialize in:

@@ -1,6 +1,7 @@
 ---
 description: Creates and maintains project documentation without touching code
 mode: subagent
+model: deepseek/deepseek-v4-flash
 temperature: 0.2
 permission:
   bash: deny

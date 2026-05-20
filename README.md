@@ -34,6 +34,12 @@ export DEEPSEEK_API_KEY="sk-your-key-here"
 
 # 7. Launch
 opencode
+
+# 8. (Optional) Install Open Design preview
+git clone https://github.com/nexu-io/open-design.git ~/Documents/code/open-design
+cd ~/Documents/code/open-design && pnpm install
+# od-preview helper is included in this config (~/.local/bin/od-preview)
+od-preview start
 ```
 
 ### Quick Start (Fresh Ubuntu / Debian)
@@ -61,15 +67,21 @@ rm -rf ~/tmp-setup
 # 4. Set API key & launch
 export DEEPSEEK_API_KEY="sk-your-key-here"
 opencode
+
+# 5. (Optional) Install Open Design preview
+git clone https://github.com/nexu-io/open-design.git ~/Documents/code/open-design
+cd ~/Documents/code/open-design && pnpm install
+od-preview start
 ```
 
 ## What's Included
 
-### MCP Servers (35)
+### MCP Servers (37)
 
 | Category | Servers |
 |----------|---------|
 | **Dev & Docs** | context7, gh_grep, semgrep |
+| **Design** | open-design, open-design-live-artifacts (disabled) |
 | **Browser** | playwright, chrome-devtools, browser-use |
 | **Infra** | docker, github, filesystem, postgres, sqlite |
 | **AI & Search** | seqthink, memory, tavily, firecrawl, brave-search, exa, perplexity |
@@ -79,7 +91,7 @@ opencode
 | **Reverse Eng** | js-reverse |
 | **Network** | wireshark |
 | **Secure Dev** | skillssafe |
-| **Disabled** | burp-bridge, cheatengine, sonarqube, gitlab, spotify |
+| **Disabled** | burp-bridge, cheatengine, sonarqube, gitlab, spotify, open-design-live-artifacts |
 
 ### Primary Agents (9)
 
@@ -96,6 +108,7 @@ Available directly or as default agent:
 | **devops** | Docker, CI/CD, deployments, monitoring |
 | **ctf-player** | All CTF categories |
 | **hacker** | Penetration testing, red team, vulnerability research |
+| **designer** | Design specialist — decks, prototypes, brands, UI, social cards |
 | **startup-mvp** | Rapid prototyping and MVPs |
 
 ### Subagents (25)
@@ -130,6 +143,7 @@ Specialized agents invoked by primary agents:
 | **osint-agent** | Domain/IP/email OSINT |
 | **crypto-agent** | Cryptography attacks, CTF crypto |
 | **payload-crafter** | Shellcode, reverse shells, evasion |
+| **designer** | Design specialist — decks, prototypes, brands, UI mockups |
 
 ### Slash Commands (16)
 
@@ -152,10 +166,11 @@ Specialized agents invoked by primary agents:
 | `/ctf <challenge>` | ctf-player | CTF challenge solver |
 | `/forensics <file>` | ctf-player | Forensic artifact analysis |
 
-### Skills (9)
+### Skills (10)
 
 | Skill | Content |
 |-------|---------|
+| `open-design` | Design engine — decks, prototypes, brands, mockups, images |
 | `git-release` | Semantic versioning, changelog generation |
 | `pr-review` | Structured PR review checklist |
 | `pentest-checklist` | Complete OWASP Testing Guide checklist |
@@ -209,7 +224,7 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 │   ├── docs-writer.md  ├── product-manager.md
 │   ├── planning-agent.md  ├── research-lead.md  ├── startup-mvp.md
 │   ├── pentester.md  ├── exploit-dev.md  ├── redteam.md  ├── blueteam.md
-│   ├── reverse-engineer.md  ├── osint-agent.md  ├── hacker.md
+│   ├── reverse-engineer.md  ├── osint-agent.md  ├── hacker.md  ├── designer.md
 │   ├── crypto-agent.md  ├── payload-crafter.md  └── ctf-player.md
 ├── commands/              # 16 slash command definitions (markdown)
 │   ├── test.md  ├── lint.md  ├── fmt.md  ├── biome.md
@@ -217,8 +232,8 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 │   ├── init-project.md  ├── pentest.md  ├── recon.md
 │   ├── threat-model.md  ├── exploit.md  ├── payload.md
 │   ├── ctf.md  └── forensics.md
-├── skills/                # 9 reusable skill definitions
-│   ├── git-release/       ├── pr-review/
+├── skills/                # 10 reusable skill definitions
+│   ├── open-design/        ├── git-release/       ├── pr-review/
 │   ├── pentest-checklist/ ├── ctf-methodology/
 │   ├── threat-hunting/    ├── crypto-recipes/
 │   ├── payload-crafting/  ├── programming-resources/
@@ -228,7 +243,9 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 ├── plugins/               # Custom local plugins
 │   └── sudo-plugin.ts
 └── bin/
-    └── sudo-askpass       # SUDO_ASKPASS helper script
+    ├── sudo-askpass       # SUDO_ASKPASS helper script
+    ├── od-design          # OD CLI wrapper (OD_PREVIEW-aware)
+    └── od-preview         # Start/stop preview daemon
 ```
 
 ## Environment Variables
@@ -236,6 +253,10 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 ```bash
 # Required
 export DEEPSEEK_API_KEY="sk-..."       # Your DeepSeek API key
+
+# Open Design — switch between stable (AUR) and preview (source)
+export OD_PREVIEW="1"                  # Set to 1 for source-built 0.8.0 preview
+                                       # Leave unset for AUR 0.7.0 stable
 
 # Optional — enables additional MCP features
 export GITHUB_TOKEN="ghp_..."          # GitHub API access
@@ -258,6 +279,71 @@ Python · Rust · TypeScript · JavaScript · Go · Svelte · Astro · HTML · C
 Formatters auto-run on write: ruff (Python), biome (JS/TS/HTML/CSS/Svelte/Astro), gofmt (Go), cargofmt (Rust)
 
 LSP servers auto-start on file open: pyright, rust-analyzer, typescript, gopls, svelte, astro
+
+## Open Design Integration
+
+[Open Design](https://github.com/nexu-io/open-design) is an agent-native design engine (0.8.0-preview). It generates decks, prototypes, brand identities, UI mockups, posters, social cards, diagrams, and more through MCP.
+
+### Setup
+
+```bash
+# 1. Clone Open Design (if not already done)
+git clone https://github.com/nexu-io/open-design.git ~/Documents/code/open-design
+cd ~/Documents/code/open-design
+git checkout main
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Rebuild native modules for your Node version (if needed)
+cd node_modules/.pnpm/better-sqlite3@*/node_modules/better-sqlite3 && npx node-gyp rebuild
+
+# 4. Ensure electron is downloaded
+node node_modules/.pnpm/electron@*/node_modules/electron/install.js
+
+# 5. Install the od-preview helper (already in this config)
+od-preview start    # starts daemon on :7456 + web on :7457
+```
+
+### Usage
+
+Ask OpenCode to design anything:
+
+```
+> design a landing page for a coffee subscription service
+> create a pitch deck for our startup
+> generate a twitter card for our launch announcement
+> mock up an iPhone screenshot of our app
+> build a brand identity with a warm editorial feel
+```
+
+The `designer` agent handles design tasks. The `open-design` skill auto-loads when design terms are detected.
+
+### MCP Tools
+
+The `open-design` MCP server connects to the local daemon and exposes:
+- **Project management**: list, inspect, search projects
+- **File operations**: read/write/search project files
+- **Artifact creation**: write self-contained HTML/CSS/JS designs
+- **Active context**: automatically targets the user's current project
+
+### Design Systems (152 available)
+
+```bash
+od design-systems list              # browse all systems
+od design-systems show opencode-ai  # inspect a system
+```
+
+Key systems: `default`, `warm-editorial`, `kami`, `atelier-zero`, `brutalism`, `neobrutalism`, `glassmorphism`, `apple`, `nike`, `stripe`, `vercel`, `notion`, `github`, `opencode-ai`
+
+### Ports
+
+| Service | Port |
+|---------|------|
+| Daemon API | `7456` |
+| Web UI | `7457` |
+
+
 
 ## Updating
 

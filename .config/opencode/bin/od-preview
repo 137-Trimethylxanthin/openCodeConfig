@@ -6,54 +6,56 @@ set -e
 OD_REPO="${OD_REPO:-$HOME/Documents/code/open-design}"
 OD_DAEMON_PORT="${OD_DAEMON_PORT:-7456}"
 OD_WEB_PORT="${OD_WEB_PORT:-7457}"
-OD_LOG="${OD_LOG:-/tmp/od-preview.log}"
-
 export OD_DATA_DIR="${OD_DATA_DIR:-$OD_REPO/.od}"
+
 cd "$OD_REPO"
 
 start_daemon() {
-  echo "Starting preview daemon on :$OD_DAEMON_PORT..."
-  nohup node apps/daemon/dist/cli.js --port "$OD_DAEMON_PORT" --host 127.0.0.1 > /tmp/od-daemon.log 2>&1 &
-  disown
+  echo "Starting daemon on :$OD_DAEMON_PORT..."
+  OD_WEB_PORT="$OD_WEB_PORT" setsid -f node apps/daemon/dist/cli.js \
+    --port "$OD_DAEMON_PORT" --host 127.0.0.1 > /tmp/od-daemon.log 2>&1
   for i in $(seq 1 20); do
     if curl -sf "http://127.0.0.1:$OD_DAEMON_PORT/api/health" > /dev/null 2>&1; then
-      echo "Daemon ready — http://127.0.0.1:$OD_DAEMON_PORT"
+      echo "  daemon ready"
       return 0
     fi
     sleep 1
   done
-  echo "Daemon didn't start — check /tmp/od-daemon.log"
+  echo "  daemon failed — check /tmp/od-daemon.log"
   return 1
 }
 
 start_web() {
-  echo "Starting preview web on :$OD_WEB_PORT..."
-  local web_log="/tmp/od-web.log"
-  nohup pnpm tools-dev run web --daemon-port "$OD_DAEMON_PORT" --web-port "$OD_WEB_PORT" > "$web_log" 2>&1 &
-  disown
-  sleep 3
-  if ps -p $! > /dev/null 2>&1; then
-    echo "Web UI — http://127.0.0.1:$OD_WEB_PORT"
-  else
-    echo "Web didn't start (daemon-only mode) — check $web_log"
-  fi
+  echo "Starting web on :$OD_WEB_PORT..."
+  setsid -f bash -c "cd '$OD_REPO' && pnpm --filter @open-design/web dev --port '$OD_WEB_PORT' > /tmp/od-web.log 2>&1"
+  for i in $(seq 1 30); do
+    if curl -sf -o /dev/null "http://127.0.0.1:$OD_WEB_PORT" 2>/dev/null; then
+      echo "  web ready"
+      return 0
+    fi
+    sleep 1
+  done
+  echo "  web failed — check /tmp/od-web.log"
+  return 1
 }
 
 case "${1:-start}" in
   start)
+    start_daemon && start_web && echo ""
+    echo "  Web UI:  http://127.0.0.1:$OD_WEB_PORT"
+    echo "  Daemon:  http://127.0.0.1:$OD_DAEMON_PORT"
+    ;;
+  daemon)
     start_daemon
     ;;
-  full)
-    start_daemon && start_web
-    ;;
   stop)
-    OD_PREVIEW=1 od-design daemon stop 2>/dev/null || true
-    pkill -f "tools-dev.*$OD_DAEMON_PORT" 2>/dev/null || true
-    pkill -f "pnpm.*tools-dev" 2>/dev/null || true
+    pkill -f "cli.js --port $OD_DAEMON_PORT" 2>/dev/null || true
+    pkill -f "next dev.*$OD_WEB_PORT" 2>/dev/null || true
     echo "stopped"
     ;;
   status)
-    curl -sf "http://127.0.0.1:$OD_DAEMON_PORT/api/health" 2>/dev/null && echo "" || echo "not running"
+    echo -n "daemon: "; curl -sf "http://127.0.0.1:$OD_DAEMON_PORT/api/health" 2>/dev/null && echo "" || echo "not running"
+    echo -n "web:    "; curl -sf -o /dev/null -w "%{http_code}\n" "http://127.0.0.1:$OD_WEB_PORT" 2>/dev/null || echo "not running"
     ;;
   logs)
     tail -f /tmp/od-daemon.log
@@ -62,7 +64,7 @@ case "${1:-start}" in
     echo "http://127.0.0.1:$OD_WEB_PORT"
     ;;
   *)
-    echo "Usage: od-preview {start|full|stop|status|logs|url}"
+    echo "Usage: od-preview {start|daemon|stop|status|logs|url}"
     exit 1
     ;;
 esac

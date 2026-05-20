@@ -7,6 +7,7 @@ if [[ "${OD_PREVIEW:-0}" == "1" ]]; then
   OD_REPO="${OD_REPO:-$HOME/Documents/code/open-design}"
   OD_DATA_DIR="${OD_DATA_DIR:-$OD_REPO/.od}"
   export OD_DATA_DIR
+  export OD_WEB_PORT="${OD_WEB_PORT:-7457}"
   exec node "$OD_REPO/apps/daemon/dist/cli.js" "$@"
 else
   if [[ -z "${OD_DATA_DIR:-}" ]]; then

@@ -282,59 +282,103 @@ LSP servers auto-start on file open: pyright, rust-analyzer, typescript, gopls, 
 
 ## Open Design Integration
 
-[Open Design](https://github.com/nexu-io/open-design) is an agent-native design engine (0.8.0-preview). It generates decks, prototypes, brand identities, UI mockups, posters, social cards, diagrams, and more through MCP.
+[Open Design](https://github.com/nexu-io/open-design) is an agent-native design engine. It generates decks, prototypes, brand identities, UI mockups, posters, social cards, diagrams, video frames, and more through MCP. The `open-design` MCP server connects to a local daemon and exposes tools for project management, file operations, and artifact creation.
 
-### Setup
+### Installation
+
+**Stable (AUR, recommended for Arch):**
+```bash
+paru -S open-design-bin          # installs od-design CLI globally
+```
+
+**Preview (source, for 0.8.0 features):**
+```bash
+git clone https://github.com/nexu-io/open-design.git ~/Documents/code/open-design
+cd ~/Documents/code/open-design && git checkout main && pnpm install
+
+# Rebuild native modules if needed
+cd node_modules/.pnpm/better-sqlite3@*/node_modules/better-sqlite3 && npx node-gyp rebuild
+node node_modules/.pnpm/electron@*/node_modules/electron/install.js
+```
+
+**Launcher scripts** (included in this config at `~/.config/opencode/bin/`):
+
+| Script | Purpose |
+|--------|---------|
+| `od-design` | CLI wrapper — auto-switches between AUR stable (`0.7.0`) and source preview (`0.8.0`) based on `OD_PREVIEW` env var |
+| `od-preview` | Daemon lifecycle — `start`, `daemon`, `stop`, `status`, `logs`, `url` |
 
 ```bash
-# 1. Clone Open Design (if not already done)
-git clone https://github.com/nexu-io/open-design.git ~/Documents/code/open-design
-cd ~/Documents/code/open-design
-git checkout main
+# Start the daemon + web UI
+od-preview start        # daemon on :7456, web UI on :7457
 
-# 2. Install dependencies
-pnpm install
-
-# 3. Rebuild native modules for your Node version (if needed)
-cd node_modules/.pnpm/better-sqlite3@*/node_modules/better-sqlite3 && npx node-gyp rebuild
-
-# 4. Ensure electron is downloaded
-node node_modules/.pnpm/electron@*/node_modules/electron/install.js
-
-# 5. Install the od-preview helper (already in this config)
-od-preview start    # starts daemon on :7456 + web on :7457
+# Use preview (source) instead of stable
+export OD_PREVIEW=1
+od-preview start
 ```
 
-### Usage
+### Skills and Agents
 
-Ask OpenCode to design anything:
+This config includes two Open Design components that work together:
+
+**`designer` agent** (`agents/designer.md`):
+A primary agent (`mode: all`) that handles design tasks. It uses the `open-design` MCP server and follows a 6-step workflow: understand the request → check active context → select a design system → generate the artifact → write via MCP → direct to preview. Invoke it explicitly with `/agent designer` or by asking for any design task.
+
+**`open-design` skill** (`skills/open-design/SKILL.md`):
+Auto-loads when design-related terms are detected (design, deck, prototype, brand, mockup, poster, slide, presentation, landing page, design system, social card, diagram, flowchart, resume, wireframe, etc.). Contains the full reference for all 152+ design systems, MCP tools, artifact types, and CLI commands.
 
 ```
-> design a landing page for a coffee subscription service
-> create a pitch deck for our startup
-> generate a twitter card for our launch announcement
-> mock up an iPhone screenshot of our app
-> build a brand identity with a warm editorial feel
+# Skill auto-triggers on any of these terms:
+"design a landing page for..."
+"create a pitch deck..."
+"build a brand identity..."
+"mock up an iPhone screenshot..."
+"generate a social card for..."
 ```
 
-The `designer` agent handles design tasks. The `open-design` skill auto-loads when design terms are detected.
+### MCP Servers
 
-### MCP Tools
+Two MCP servers are configured in `opencode.json`:
 
-The `open-design` MCP server connects to the local daemon and exposes:
-- **Project management**: list, inspect, search projects
-- **File operations**: read/write/search project files
-- **Artifact creation**: write self-contained HTML/CSS/JS designs
-- **Active context**: automatically targets the user's current project
+| Server | Status | Purpose |
+|--------|--------|---------|
+| `open-design` | **enabled** | Project management, file ops, artifact creation, active context |
+| `open-design-live-artifacts` | disabled | Live artifact streaming (preview feature) |
 
 ### Design Systems (152 available)
 
+Open Design bundles 152+ design systems. Key categories:
+
+| Category | Systems |
+|----------|---------|
+| **General** | `default`, `warm-editorial`, `editorial` |
+| **Japanese** | `kami` (parchment + ink aesthetic) |
+| **Bold** | `brutalism`, `neobrutalism`, `swiss-creative` |
+| **Glass/Clay** | `glassmorphism`, `claymorphism` |
+| **Magazine** | `atelier-zero` (collage), `article-magazine` |
+| **Terminal** | `opencode-ai` (monospace-first, terminal-native) |
+| **Brand** | `apple`, `nike`, `stripe`, `spotify`, `figma`, `notion`, `vercel`, `supabase`, `linear-app`, `airbnb`, `tesla`, `nvidia`, `discord`, `github`, `openai`, `claude`, `cursor`, `raycast`, `warp` |
+
 ```bash
-od design-systems list              # browse all systems
-od design-systems show opencode-ai  # inspect a system
+od design-systems list              # browse all 152+ systems
+od design-systems show opencode-ai  # inspect a specific system
 ```
 
-Key systems: `default`, `warm-editorial`, `kami`, `atelier-zero`, `brutalism`, `neobrutalism`, `glassmorphism`, `apple`, `nike`, `stripe`, `vercel`, `notion`, `github`, `opencode-ai`
+### CLI Reference
+
+```bash
+od project create --name <name> --kind <kind>   # create a project
+od project list                                  # list all projects
+od design-systems list                           # browse design systems
+od design-systems show <id>                      # inspect a design system
+od skills list                                   # list available templates/skills
+od skills show <id>                              # inspect a skill
+od plugin search <query>                         # search community plugins
+od plugin install <id>                           # install a plugin
+od media generate --surface image --prompt "..." # generate media
+```
+
+Run CLI commands from `~/Documents/code/open-design` (source) or anywhere (AUR).
 
 ### Ports
 

@@ -16,7 +16,8 @@
     "opencode-skills-collection",
     "opencode-scheduler",
     "opencode-plugin-langfuse",
-    "opencode-subagent-statusline"
+    "opencode-subagent-statusline",
+    "./plugins/sudo-plugin.ts"
   ],
 
   "formatter": {

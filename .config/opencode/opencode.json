@@ -300,6 +300,29 @@
       "type": "remote",
       "url": "https://mcp.godotengine.org/mcp",
       "enabled": false
+    },
+    "discord": {
+      "type": "local",
+      "command": ["npx", "-y", "@pasympa/discord-mcp"],
+      "enabled": false,
+      "environment": {
+        "DISCORD_BOT_TOKEN": "{env:DISCORD_BOT_TOKEN}",
+        "DISCORD_APP_ID": "{env:DISCORD_APP_ID}",
+        "DISCORD_GUILD_ID": "{env:DISCORD_GUILD_ID}"
+      }
+    },
+    "telegram": {
+      "type": "local",
+      "command": ["npx", "-y", "telegram-mcp-bot"],
+      "enabled": false,
+      "environment": {
+        "TELEGRAM_BOT_TOKEN": "{env:TELEGRAM_BOT_TOKEN}"
+      }
+    },
+    "whatsapp": {
+      "type": "local",
+      "command": ["npx", "-y", "@sjawhar/whatsapp-mcp"],
+      "enabled": false
     }
   },
 

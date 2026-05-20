@@ -76,7 +76,7 @@ od-preview start
 
 ## What's Included
 
-### MCP Servers (43)
+### MCP Servers (46)
 
 | Category | Servers |
 |----------|---------|
@@ -85,6 +85,7 @@ od-preview start
 | **Productivity** | google-sheets (disabled), grafana (disabled) |
 | **Creative** | blender (disabled), godot (disabled) |
 | **Monitoring** | sentry (disabled) |
+| **Messaging** | discord (disabled), telegram (disabled), whatsapp (disabled) |
 | **Browser** | playwright, chrome-devtools, browser-use |
 | **Infra** | docker, github, filesystem, postgres, sqlite |
 | **AI & Search** | seqthink, memory, tavily, firecrawl, brave-search, exa, perplexity |
@@ -238,7 +239,7 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 
 ```
 ~/.config/opencode/
-├── opencode.json          # Main config — model, 43 MCPs, 34 plugins, formatters, permissions, agents
+├── opencode.json          # Main config — model, 46 MCPs, 34 plugins, formatters, permissions, agents
 ├── AGENTS.md              # Global coding rules for 8+ languages
 ├── tui.json               # TUI settings — theme, mouse, scroll
 ├── agents/                # 34 agent definitions (markdown)
@@ -294,6 +295,12 @@ export VIRUSTOTAL_API_KEY="..."        # Malware analysis
 export SECURITYTRAILS_API_KEY="..."   # DNS/domain OSINT
 export CENSYS_API_ID="..."             # Internet scanning OSINT
 export CENSYS_API_SECRET="..."         # Internet scanning OSINT
+
+# Optional — messaging MCP bots
+export DISCORD_BOT_TOKEN="..."          # Discord bot token (Discord Dev Portal)
+export DISCORD_APP_ID="..."             # Discord application ID
+export DISCORD_GUILD_ID="..."           # Discord server/guild ID
+export TELEGRAM_BOT_TOKEN="..."         # Telegram bot token (@BotFather)
 
 # Optional — sudo plugin
 export SUDO_PASSWORD="..."             # Auto-fill sudo passwords

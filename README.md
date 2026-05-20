@@ -76,12 +76,15 @@ od-preview start
 
 ## What's Included
 
-### MCP Servers (37)
+### MCP Servers (43)
 
 | Category | Servers |
 |----------|---------|
 | **Dev & Docs** | context7, gh_grep, semgrep |
-| **Design** | open-design, open-design-live-artifacts (disabled) |
+| **Design** | open-design, open-design-live-artifacts (disabled), figma (disabled) |
+| **Productivity** | google-sheets (disabled), grafana (disabled) |
+| **Creative** | blender (disabled), godot (disabled) |
+| **Monitoring** | sentry (disabled) |
 | **Browser** | playwright, chrome-devtools, browser-use |
 | **Infra** | docker, github, filesystem, postgres, sqlite |
 | **AI & Search** | seqthink, memory, tavily, firecrawl, brave-search, exa, perplexity |
@@ -181,7 +184,7 @@ Specialized agents invoked by primary agents:
 | `programming-resources` | Curated APIs, docs, tools, CTF resources |
 | `passover` | Passover/holiday utilities |
 
-### Plugins (10)
+### Plugins (34)
 
 | Plugin | Purpose |
 |--------|---------|
@@ -194,6 +197,31 @@ Specialized agents invoked by primary agents:
 | `opencode-scheduler` | Scheduled task execution |
 | `opencode-plugin-langfuse` | LLM observability and tracing |
 | `opencode-subagent-statusline` | Subagent status in TUI |
+| `opencode-background-agents` | Async background task delegation |
+| `opencode-worktree` | Zero-friction git worktrees |
+| `opencode-morph-fast-apply` | 10x faster code editing |
+| `opencode-morph-plugin` | Morph Fast Apply + WarpGrep search |
+| `opencode-dynamic-context-pruning` | Prune obsolete tool outputs |
+| `opencode-pty` | Background processes in PTY |
+| `opencode-websearch-cited` | Native cited web search |
+| `opencode-type-inject` | Auto-inject TS/Svelte types into reads |
+| `opencode-skillful` | Lazy-load prompts on demand |
+| `opencode-sentry-monitor` | Sentry AI agent tracing |
+| `opencode-firecrawl` | Web scraping and crawling |
+| `opencode-conductor` | Protocol-driven Context→Spec→Plan→Implement |
+| `opencode-md-table-formatter` | Clean up LLM-generated markdown tables |
+| `opencode-daytona` | Isolated Daytona sandbox sessions |
+| `opencode-devcontainers` | Multi-branch devcontainer isolation |
+| `opencode-openai-codex-auth` | Use ChatGPT Plus/Pro subscription |
+| `opencode-gemini-auth` | Use Gemini plan instead of API billing |
+| `opencode-antigravity-auth` | Antigravity free models |
+| `opencode-google-antigravity-auth` | Google Antigravity OAuth + Google Search |
+| `opencode-zellij-namer` | AI-powered Zellij session naming |
+| `opencode-jfrog-plugin` | JFrog platform integration |
+| `@plannotator/opencode` | Interactive plan review with annotation |
+| `@openspoon/subtask2` | Advanced orchestration system |
+| `micode` | Structured Brainstorm→Plan→Implement workflow |
+| `octto` | Interactive browser UI for AI brainstorming |
 | `sudo-plugin.ts` (custom) | Auto-inject SUDO_ASKPASS for sudo commands |
 
 ### Custom Themes (3)
@@ -210,7 +238,7 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 
 ```
 ~/.config/opencode/
-├── opencode.json          # Main config — model, MCPs, formatters, permissions, agents
+├── opencode.json          # Main config — model, 43 MCPs, 34 plugins, formatters, permissions, agents
 ├── AGENTS.md              # Global coding rules for 8+ languages
 ├── tui.json               # TUI settings — theme, mouse, scroll
 ├── agents/                # 34 agent definitions (markdown)
@@ -232,7 +260,7 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 │   ├── init-project.md  ├── pentest.md  ├── recon.md
 │   ├── threat-model.md  ├── exploit.md  ├── payload.md
 │   ├── ctf.md  └── forensics.md
-├── skills/                # 10 reusable skill definitions
+├── skills/                # 10 reusable skill definitions (+132 Open Design skills)
 │   ├── open-design/        ├── git-release/       ├── pr-review/
 │   ├── pentest-checklist/ ├── ctf-methodology/
 │   ├── threat-hunting/    ├── crypto-recipes/

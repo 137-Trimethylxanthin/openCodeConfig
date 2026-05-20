@@ -17,6 +17,31 @@
     "opencode-scheduler",
     "opencode-plugin-langfuse",
     "opencode-subagent-statusline",
+    "opencode-background-agents",
+    "opencode-worktree",
+    "opencode-morph-fast-apply",
+    "opencode-morph-plugin",
+    "opencode-dynamic-context-pruning",
+    "opencode-pty",
+    "opencode-websearch-cited",
+    "opencode-type-inject",
+    "opencode-skillful",
+    "opencode-sentry-monitor",
+    "opencode-firecrawl",
+    "opencode-conductor",
+    "opencode-md-table-formatter",
+    "opencode-daytona",
+    "opencode-devcontainers",
+    "opencode-openai-codex-auth",
+    "opencode-gemini-auth",
+    "opencode-antigravity-auth",
+    "opencode-google-antigravity-auth",
+    "opencode-zellij-namer",
+    "opencode-jfrog-plugin",
+    "@plannotator/opencode",
+    "@openspoon/subtask2",
+    "micode",
+    "octto",
     "./plugins/sudo-plugin.ts"
   ],
 
@@ -233,6 +258,48 @@
       "type": "local",
       "command": ["od-design", "mcp", "live-artifacts", "--daemon-url", "http://127.0.0.1:7456"],
       "enabled": false
+    },
+    "sentry": {
+      "type": "remote",
+      "url": "https://mcp.sentry.dev/mcp",
+      "oauth": {},
+      "enabled": false
+    },
+    "figma": {
+      "type": "local",
+      "command": ["npx", "-y", "@anthropic/mcp-server-figma"],
+      "enabled": false,
+      "environment": {
+        "FIGMA_API_KEY": "{env:FIGMA_API_KEY}"
+      }
+    },
+    "google-sheets": {
+      "type": "local",
+      "command": ["npx", "-y", "@anthropic/mcp-server-google-sheets"],
+      "enabled": false,
+      "environment": {
+        "GOOGLE_CLIENT_EMAIL": "{env:GOOGLE_CLIENT_EMAIL}",
+        "GOOGLE_PRIVATE_KEY": "{env:GOOGLE_PRIVATE_KEY}"
+      }
+    },
+    "grafana": {
+      "type": "local",
+      "command": ["npx", "-y", "@anthropic/mcp-server-grafana"],
+      "enabled": false,
+      "environment": {
+        "GRAFANA_URL": "{env:GRAFANA_URL}",
+        "GRAFANA_API_KEY": "{env:GRAFANA_API_KEY}"
+      }
+    },
+    "blender": {
+      "type": "remote",
+      "url": "https://mcp.blender.org/mcp",
+      "enabled": false
+    },
+    "godot": {
+      "type": "remote",
+      "url": "https://mcp.godotengine.org/mcp",
+      "enabled": false
     }
   },
 
@@ -271,7 +338,9 @@
     ]
   },
 
-  "experimental": {},
+  "experimental": {
+    "background_subagents": true
+  },
 
   "agent": {
     "plan": {

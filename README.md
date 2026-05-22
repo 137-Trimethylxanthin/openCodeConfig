@@ -76,7 +76,7 @@ od-preview start
 
 ## What's Included
 
-### MCP Servers (46)
+### MCP Servers (51)
 
 | Category | Servers |
 |----------|---------|
@@ -87,7 +87,7 @@ od-preview start
 | **Monitoring** | sentry (disabled) |
 | **Messaging** | discord (disabled), telegram (disabled), whatsapp (disabled) |
 | **Browser** | playwright, chrome-devtools, browser-use |
-| **Infra** | docker, github, filesystem, postgres, sqlite |
+| **Infra** | docker, github, filesystem, postgres, sqlite, hetzner, hetzner-aiwerk, cloudflare, cloudflare-itunified, sshmcp |
 | **AI & Search** | seqthink, memory, tavily, firecrawl, brave-search, exa, perplexity |
 | **Pentest** | pentest-mcp, nmap, nuclei, sqlmap, webhook |
 | **OSINT** | osint (Shodan+VT+SecurityTrails+Censys+DNS+WHOIS+crt.sh+BGP), wayback |
@@ -239,7 +239,7 @@ Plus built-in themes: tokyonight, everforest, ayu, catppuccin, gruvbox, kanagawa
 
 ```
 ~/.config/opencode/
-├── opencode.json          # Main config — model, 46 MCPs, 34 plugins, formatters, permissions, agents
+├── opencode.json          # Main config — model, 51 MCPs, 34 plugins, formatters, permissions, agents
 ├── AGENTS.md              # Global coding rules for 8+ languages
 ├── tui.json               # TUI settings — theme, mouse, scroll
 ├── agents/                # 34 agent definitions (markdown)
@@ -295,6 +295,13 @@ export VIRUSTOTAL_API_KEY="..."        # Malware analysis
 export SECURITYTRAILS_API_KEY="..."   # DNS/domain OSINT
 export CENSYS_API_ID="..."             # Internet scanning OSINT
 export CENSYS_API_SECRET="..."         # Internet scanning OSINT
+
+# Optional — Hetzner Cloud
+export HCLOUD_TOKEN="..."                # Hetzner Cloud API token (hetzner + hetzner-aiwerk MCPs)
+
+# Optional — Cloudflare
+export CLOUDFLARE_API_TOKEN="..."        # Cloudflare API token (cloudflare-itunified + cloudflare MCPs)
+export CLOUDFLARE_ACCOUNT_ID="..."       # Cloudflare Account ID (cloudflare-itunified MCP)
 
 # Optional — messaging MCP bots
 export DISCORD_BOT_TOKEN="..."          # Discord bot token (Discord Dev Portal)

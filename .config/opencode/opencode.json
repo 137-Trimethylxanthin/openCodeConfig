@@ -30,7 +30,6 @@
     "opencode-firecrawl",
     "opencode-conductor",
     "opencode-md-table-formatter",
-    "opencode-daytona",
     "opencode-devcontainers",
     "opencode-openai-codex-auth",
     "opencode-gemini-auth",
@@ -323,6 +322,41 @@
       "type": "local",
       "command": ["npx", "-y", "@sjawhar/whatsapp-mcp"],
       "enabled": false
+    },
+    "hetzner": {
+      "type": "local",
+      "command": ["npx", "-y", "@danfarrdotcom/hetzner-mcp"],
+      "enabled": true,
+      "environment": {
+        "HCLOUD_TOKEN": "{env:HCLOUD_TOKEN}"
+      }
+    },
+    "hetzner-aiwerk": {
+      "type": "local",
+      "command": ["npx", "-y", "@aiwerk/mcp-server-hetzner"],
+      "enabled": true,
+      "environment": {
+        "HCLOUD_TOKEN": "{env:HCLOUD_TOKEN}"
+      }
+    },
+    "cloudflare-itunified": {
+      "type": "local",
+      "command": ["npx", "-y", "@itunified.io/mcp-cloudflare"],
+      "enabled": true,
+      "environment": {
+        "CLOUDFLARE_API_TOKEN": "{env:CLOUDFLARE_API_TOKEN}",
+        "CLOUDFLARE_ACCOUNT_ID": "{env:CLOUDFLARE_ACCOUNT_ID}"
+      }
+    },
+    "cloudflare": {
+      "type": "local",
+      "command": ["npx", "-y", "@cloudflare/mcp-server-cloudflare"],
+      "enabled": true
+    },
+    "sshmcp": {
+      "type": "local",
+      "command": ["npx", "-y", "@nl4ever/sshmcp"],
+      "enabled": true
     }
   },
 

@@ -1,12 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-
   "shell": "fish",
   "autoupdate": "notify",
   "model": "deepseek/deepseek-v4-pro",
   "small_model": "deepseek/deepseek-v4-flash",
   "default_agent": "build",
-
+  "provider": {},
   "plugin": [
     "opencode-notify",
     "opencode-shell-strategy",
@@ -23,7 +22,6 @@
     "opencode-morph-plugin",
     "opencode-dynamic-context-pruning",
     "opencode-pty",
-    "opencode-websearch-cited",
     "opencode-type-inject",
     "opencode-skillful",
     "opencode-sentry-monitor",
@@ -31,10 +29,10 @@
     "opencode-conductor",
     "opencode-md-table-formatter",
     "opencode-devcontainers",
-    "opencode-openai-codex-auth",
     "opencode-gemini-auth",
     "opencode-antigravity-auth",
     "opencode-google-antigravity-auth",
+    "@rama_nigg/open-cursor@latest",
     "opencode-zellij-namer",
     "opencode-jfrog-plugin",
     "@plannotator/opencode",
@@ -43,24 +41,29 @@
     "octto",
     "./plugins/sudo-plugin.ts"
   ],
-
   "formatter": {
-    "prettier": { "disabled": true },
+    "prettier": {
+      "disabled": true
+    },
     "biome": {},
     "ruff": {
-      "command": ["ruff", "format", "$FILE"],
-      "extensions": [".py", ".pyi"]
+      "command": [
+        "ruff",
+        "format",
+        "$FILE"
+      ],
+      "extensions": [
+        ".py",
+        ".pyi"
+      ]
     },
     "cargofmt": {},
     "gofmt": {}
   },
-
   "lsp": true,
-
   "instructions": [
     "../opencode/AGENTS.md"
   ],
-
   "mcp": {
     "context7": {
       "type": "remote",
@@ -75,37 +78,66 @@
     },
     "playwright": {
       "type": "local",
-      "command": ["npx", "-y", "@playwright/mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp"
+      ],
       "enabled": true
     },
     "filesystem": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "{env:HOME}"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "{env:HOME}"
+      ],
       "enabled": true
     },
     "seqthink": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
       "enabled": true
     },
     "memory": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
       "enabled": true
     },
     "chrome-devtools": {
       "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp"
+      ],
       "enabled": true
     },
     "docker": {
       "type": "local",
-      "command": ["npx", "-y", "docker-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "docker-mcp"
+      ],
       "enabled": true
     },
     "github": {
       "type": "local",
-      "command": ["npx", "-y", "@fre4x/github"],
+      "command": [
+        "npx",
+        "-y",
+        "@fre4x/github"
+      ],
       "enabled": true,
       "environment": {
         "GITHUB_TOKEN": "{env:GITHUB_TOKEN}"
@@ -113,27 +145,47 @@
     },
     "browser-use": {
       "type": "local",
-      "command": ["npx", "-y", "browser-use-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "browser-use-mcp"
+      ],
       "enabled": true
     },
     "nmap": {
       "type": "local",
-      "command": ["npx", "-y", "@ebowwa/mcp-nmap"],
+      "command": [
+        "npx",
+        "-y",
+        "@ebowwa/mcp-nmap"
+      ],
       "enabled": true
     },
     "nuclei": {
       "type": "local",
-      "command": ["npx", "-y", "gc-nuclei-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "gc-nuclei-mcp"
+      ],
       "enabled": true
     },
     "sqlmap": {
       "type": "local",
-      "command": ["npx", "-y", "@iflow-mcp/stanleyj03-sqlmap-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "@iflow-mcp/stanleyj03-sqlmap-mcp"
+      ],
       "enabled": true
     },
     "osint": {
       "type": "local",
-      "command": ["npx", "-y", "osint-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "osint-mcp-server"
+      ],
       "enabled": true,
       "environment": {
         "SHODAN_API_KEY": "{env:SHODAN_API_KEY}",
@@ -145,117 +197,211 @@
     },
     "mitre-attack": {
       "type": "local",
-      "command": ["npx", "-y", "@imouiche/mitre-attack-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "@imouiche/mitre-attack-mcp-server"
+      ],
       "enabled": true
     },
     "cve-search": {
       "type": "local",
-      "command": ["npx", "-y", "@iflow-mcp/cyreslab-circl-cve-search-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "@iflow-mcp/cyreslab-circl-cve-search-mcp-server"
+      ],
       "enabled": true
     },
     "wayback": {
       "type": "local",
-      "command": ["npx", "-y", "mcp-wayback-machine"],
+      "command": [
+        "npx",
+        "-y",
+        "mcp-wayback-machine"
+      ],
       "enabled": true
     },
     "burp-bridge": {
       "type": "local",
-      "command": ["npx", "-y", "@iflow-mcp/fwaeytens-burp-mcp-bridge"],
+      "command": [
+        "npx",
+        "-y",
+        "@iflow-mcp/fwaeytens-burp-mcp-bridge"
+      ],
       "enabled": false
     },
     "cheatengine": {
       "type": "local",
-      "command": ["npx", "-y", "cheatengine"],
+      "command": [
+        "npx",
+        "-y",
+        "cheatengine"
+      ],
       "enabled": false
     },
     "js-reverse": {
       "type": "local",
-      "command": ["npx", "-y", "js-reverse-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "js-reverse-mcp"
+      ],
       "enabled": true
     },
     "webhook": {
       "type": "local",
-      "command": ["npx", "-y", "@kevinwatt/mcp-webhook"],
+      "command": [
+        "npx",
+        "-y",
+        "@kevinwatt/mcp-webhook"
+      ],
       "enabled": true
     },
     "pentest-mcp": {
       "type": "local",
-      "command": ["npx", "-y", "pentest-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "pentest-mcp"
+      ],
       "enabled": true
     },
     "semgrep": {
       "type": "local",
-      "command": ["npx", "-y", "mcp-server-semgrep"],
+      "command": [
+        "npx",
+        "-y",
+        "mcp-server-semgrep"
+      ],
       "enabled": true
     },
     "wireshark": {
       "type": "local",
-      "command": ["uvx", "wireshark-mcp"],
+      "command": [
+        "uvx",
+        "wireshark-mcp"
+      ],
       "enabled": true
     },
     "skillssafe": {
       "type": "local",
-      "command": ["npx", "-y", "skillssafe-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "skillssafe-mcp"
+      ],
       "enabled": true
     },
     "tavily": {
       "type": "local",
-      "command": ["npx", "-y", "tavily-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "tavily-mcp"
+      ],
       "enabled": true
     },
     "firecrawl": {
       "type": "local",
-      "command": ["npx", "-y", "firecrawl-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "firecrawl-mcp"
+      ],
       "enabled": true
     },
     "brave-search": {
       "type": "local",
-      "command": ["npx", "-y", "@brave/brave-search-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "@brave/brave-search-mcp-server"
+      ],
       "enabled": true
     },
     "exa": {
       "type": "local",
-      "command": ["npx", "-y", "exa-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "exa-mcp-server"
+      ],
       "enabled": true
     },
     "sonarqube": {
       "type": "local",
-      "command": ["npx", "-y", "sonarqube-api-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "sonarqube-api-mcp"
+      ],
       "enabled": false
     },
     "postgres": {
       "type": "local",
-      "command": ["npx", "-y", "enhanced-postgres-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "enhanced-postgres-mcp-server"
+      ],
       "enabled": true
     },
     "sqlite": {
       "type": "local",
-      "command": ["npx", "-y", "mcp-server-sqlite-npx"],
+      "command": [
+        "npx",
+        "-y",
+        "mcp-server-sqlite-npx"
+      ],
       "enabled": true
     },
     "gitlab": {
       "type": "local",
-      "command": ["npx", "-y", "efficient-gitlab-mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "efficient-gitlab-mcp-server"
+      ],
       "enabled": false
     },
     "perplexity": {
       "type": "local",
-      "command": ["npx", "-y", "@perplexity-ai/mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "@perplexity-ai/mcp-server"
+      ],
       "enabled": true
     },
     "spotify": {
       "type": "local",
-      "command": ["npx", "-y", "spotify-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "spotify-mcp"
+      ],
       "enabled": false
     },
     "open-design": {
       "type": "local",
-      "command": ["od-design", "mcp", "--daemon-url", "http://127.0.0.1:7456"],
+      "command": [
+        "od-design",
+        "mcp",
+        "--daemon-url",
+        "http://127.0.0.1:7456"
+      ],
       "enabled": true
     },
     "open-design-live-artifacts": {
       "type": "local",
-      "command": ["od-design", "mcp", "live-artifacts", "--daemon-url", "http://127.0.0.1:7456"],
+      "command": [
+        "od-design",
+        "mcp",
+        "live-artifacts",
+        "--daemon-url",
+        "http://127.0.0.1:7456"
+      ],
       "enabled": false
     },
     "sentry": {
@@ -266,7 +412,11 @@
     },
     "figma": {
       "type": "local",
-      "command": ["npx", "-y", "@anthropic/mcp-server-figma"],
+      "command": [
+        "npx",
+        "-y",
+        "@anthropic/mcp-server-figma"
+      ],
       "enabled": false,
       "environment": {
         "FIGMA_API_KEY": "{env:FIGMA_API_KEY}"
@@ -274,7 +424,11 @@
     },
     "google-sheets": {
       "type": "local",
-      "command": ["npx", "-y", "@anthropic/mcp-server-google-sheets"],
+      "command": [
+        "npx",
+        "-y",
+        "@anthropic/mcp-server-google-sheets"
+      ],
       "enabled": false,
       "environment": {
         "GOOGLE_CLIENT_EMAIL": "{env:GOOGLE_CLIENT_EMAIL}",
@@ -283,7 +437,11 @@
     },
     "grafana": {
       "type": "local",
-      "command": ["npx", "-y", "@anthropic/mcp-server-grafana"],
+      "command": [
+        "npx",
+        "-y",
+        "@anthropic/mcp-server-grafana"
+      ],
       "enabled": false,
       "environment": {
         "GRAFANA_URL": "{env:GRAFANA_URL}",
@@ -302,8 +460,12 @@
     },
     "discord": {
       "type": "local",
-      "command": ["npx", "-y", "@pasympa/discord-mcp"],
-      "enabled": false,
+      "command": [
+        "npx",
+        "-y",
+        "@pasympa/discord-mcp"
+      ],
+      "enabled": true,
       "environment": {
         "DISCORD_BOT_TOKEN": "{env:DISCORD_BOT_TOKEN}",
         "DISCORD_APP_ID": "{env:DISCORD_APP_ID}",
@@ -312,7 +474,11 @@
     },
     "telegram": {
       "type": "local",
-      "command": ["npx", "-y", "telegram-mcp-bot"],
+      "command": [
+        "npx",
+        "-y",
+        "telegram-mcp-bot"
+      ],
       "enabled": false,
       "environment": {
         "TELEGRAM_BOT_TOKEN": "{env:TELEGRAM_BOT_TOKEN}"
@@ -320,12 +486,20 @@
     },
     "whatsapp": {
       "type": "local",
-      "command": ["npx", "-y", "@sjawhar/whatsapp-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "@sjawhar/whatsapp-mcp"
+      ],
       "enabled": false
     },
     "hetzner": {
       "type": "local",
-      "command": ["npx", "-y", "@danfarrdotcom/hetzner-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "@danfarrdotcom/hetzner-mcp"
+      ],
       "enabled": true,
       "environment": {
         "HCLOUD_TOKEN": "{env:HCLOUD_TOKEN}"
@@ -333,7 +507,11 @@
     },
     "hetzner-aiwerk": {
       "type": "local",
-      "command": ["npx", "-y", "@aiwerk/mcp-server-hetzner"],
+      "command": [
+        "npx",
+        "-y",
+        "@aiwerk/mcp-server-hetzner"
+      ],
       "enabled": true,
       "environment": {
         "HCLOUD_TOKEN": "{env:HCLOUD_TOKEN}"
@@ -341,7 +519,11 @@
     },
     "cloudflare-itunified": {
       "type": "local",
-      "command": ["npx", "-y", "@itunified.io/mcp-cloudflare"],
+      "command": [
+        "npx",
+        "-y",
+        "@itunified.io/mcp-cloudflare"
+      ],
       "enabled": true,
       "environment": {
         "CLOUDFLARE_API_TOKEN": "{env:CLOUDFLARE_API_TOKEN}",
@@ -350,16 +532,36 @@
     },
     "cloudflare": {
       "type": "local",
-      "command": ["npx", "-y", "@cloudflare/mcp-server-cloudflare"],
+      "command": [
+        "npx",
+        "-y",
+        "@cloudflare/mcp-server-cloudflare"
+      ],
       "enabled": true
     },
     "sshmcp": {
       "type": "local",
-      "command": ["npx", "-y", "@nl4ever/sshmcp"],
+      "command": [
+        "npx",
+        "-y",
+        "@nl4ever/sshmcp"
+      ],
+      "enabled": true
+    },
+    "ida-decompiler": {
+      "type": "remote",
+      "url": "http://d.i:8745/mcp",
+      "enabled": true
+    },
+    "hof-wiki": {
+      "type": "remote",
+      "url": "http://s.i/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:HOF_WIKI_TOKEN}"
+      },
       "enabled": true
     }
   },
-
   "permission": {
     "*": "allow",
     "bash": {
@@ -372,13 +574,12 @@
     },
     "webfetch": "allow"
   },
-
   "compaction": {
     "auto": true,
     "prune": true,
-    "reserved": 10000
+    "reserved": 10000,
+    "preserve_recent_tokens": 1000000
   },
-
   "watcher": {
     "ignore": [
       "node_modules/**",
@@ -394,11 +595,9 @@
       ".cache/**"
     ]
   },
-
   "experimental": {
     "background_subagents": true
   },
-
   "agent": {
     "plan": {
       "model": "deepseek/deepseek-v4-flash"

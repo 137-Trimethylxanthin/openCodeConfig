@@ -12,5 +12,10 @@ Thumbs.db
 bun.lock
 package-lock.json
 
+# Secrets
+.env
+*.bak*
+*.bak.*
+
 # Don't ignore the opencode config package.json and node_modules
 # (that's handled by .config/opencode/.gitignore)

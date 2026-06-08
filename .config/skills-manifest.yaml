@@ -1,0 +1,536 @@
+# ═══════════════════════════════════════════════════════════════
+# Complete Skills & MCP Manifest
+# Generated from live system — 2026-06-08
+# ═══════════════════════════════════════════════════════════════
+
+# ── Hermes Skills: 69 total ───────────────────────────────────
+# Install via: hermes skills install <name>
+# Or batch: ./setup.sh --install-skills
+
+hermes_skills:
+  apple:
+    - apple-notes
+    - apple-reminders
+    - findmy
+    - imessage
+    - macos-computer-use
+
+  autonomous-ai-agents:
+    - claude-code
+    - codex
+    - hermes-agent
+    - opencode
+
+  creative:
+    - architecture-diagram
+    - ascii-art
+    - ascii-video
+    - baoyu-infographic
+    - claude-design
+    - comfyui
+    - design-md
+    - excalidraw
+    - humanizer
+    - manim-video
+    - p5js
+    - popular-web-designs
+    - pretext
+    - sketch
+    - songwriting-and-ai-music
+    - touchdesigner-mcp
+
+  data-science:
+    - jupyter-live-kernel
+
+  devops:
+    - ai-agent-config-management
+    - kanban-orchestrator
+    - kanban-worker
+
+  dogfood:
+    - dogfood
+
+  email:
+    - himalaya
+
+  github:
+    - codebase-inspection
+    - github-auth
+    - github-code-review
+    - github-issues
+    - github-pr-workflow
+    - github-repo-management
+
+  media:
+    - gif-search
+    - heartmula
+    - songsee
+    - youtube-content
+
+  mlops:
+    - huggingface-hub
+
+  note-taking:
+    - obsidian
+
+  productivity:
+    - airtable
+    - google-workspace
+    - maps
+    - nano-pdf
+    - notion
+    - ocr-and-documents
+    - powerpoint
+    - teams-meeting-pipeline
+
+  red-teaming:
+    - godmode
+
+  research:
+    - arxiv
+    - blogwatcher
+    - llm-wiki
+    - polymarket
+    - research-paper-writing
+
+  smart-home:
+    - openhue
+
+  social-media:
+    - xurl
+
+  software-development:
+    - hermes-agent-skill-authoring
+    - node-inspect-debugger
+    - plan
+    - python-debugpy
+    - requesting-code-review
+    - simplify-code
+    - spike
+    - systematic-debugging
+    - test-driven-development
+
+  yuanbao:
+    - yuanbao
+
+
+# ── OpenCode Skills: 142 total ────────────────────────────────
+# Auto-managed by OpenCode. Listed here for reference.
+# Install via: /skills in OpenCode, or opencode skills install <name>
+
+opencode_skills:
+  - 8-bit-orbit-video-template
+  - ad-creative
+  - after-hours-editorial-template
+  - agent-browser
+  - ai-music-album
+  - algorithmic-art
+  - apple-hig
+  - article-magazine
+  - artifacts-builder
+  - brainstorming
+  - brand-guidelines
+  - canvas-design
+  - card-twitter
+  - card-xiaohongshu
+  - color-expert
+  - competitive-ads-extractor
+  - copywriting
+  - creative-director
+  - crypto-recipes
+  - ctf-methodology
+  - d3-visualization
+  - data-report
+  - deck-guizang-editorial
+  - deck-open-slide-canvas
+  - deck-swiss-international
+  - design-brief
+  - design-consultation
+  - design-md
+  - design-review
+  - digits-fintech-swiss-template
+  - doc
+  - doc-kami-parchment
+  - docx
+  - domain-name-brainstormer
+  - editorial-burgundy-principles-template
+  - enhance-prompt
+  - fal-3d
+  - fal-generate
+  - fal-image-edit
+  - fal-kling-o3
+  - fal-lip-sync
+  - fal-realtime
+  - fal-restore
+  - fal-train
+  - fal-tryon
+  - fal-upscale
+  - fal-video-edit
+  - fal-vision
+  - faq-page
+  - field-notes-editorial-template
+  - figma-code-connect-components
+  - figma-create-design-system-rules
+  - figma-create-new-file
+  - figma-generate-design
+  - figma-generate-library
+  - figma-implement-design
+  - figma-use
+  - flutter-animating-apps
+  - frame-data-chart-nyt
+  - frame-flowchart-sticky
+  - frame-glitch-title
+  - frame-light-leak-cinema
+  - frame-liquid-bg-hero
+  - frame-logo-outro
+  - frame-macos-notification
+  - frontend-design
+  - frontend-dev
+  - frontend-skill
+  - frontend-slides
+  - full-page-screenshot
+  - gif-sticker-maker
+  - git-release
+  - gsap-core
+  - gsap-react
+  - gsap-scrolltrigger
+  - gsap-timeline
+  - hand-drawn-diagrams
+  - hatch-pet
+  - html-ppt-retro-quarterly-review
+  - image-enhancer
+  - imagegen
+  - imagen
+  - login-flow
+  - marketing-psychology
+  - minimax-docx
+  - minimax-pdf
+  - mockup-device-3d
+  - nanobanana-ppt
+  - open-design
+  - passover
+  - payload-crafting
+  - paywall-upgrade-cro
+  - pdf
+  - pentest-checklist
+  - pixelbin-media
+  - plan-design-review
+  - platform-design
+  - poster-hero
+  - ppt-keynote
+  - pptx
+  - pptx-generator
+  - pptx-html-fidelity-audit
+  - programming-resources
+  - pr-review
+  - release-notes-one-pager
+  - remotion
+  - replicate
+  - resume-modern
+  - screenshot
+  - screenshots-marketing
+  - shadcn-ui
+  - shader-dev
+  - slack-gif-creator
+  - slides
+  - social-reddit-card
+  - social-spotify-card
+  - social-x-post-card
+  - sora
+  - speech
+  - stitch-loop
+  - swiftui-design
+  - swiss-creative-mode-template
+  - swiss-user-research-video-template
+  - taste-skill
+  - theme-factory
+  - threat-hunting
+  - threejs
+  - ui-skills
+  - ui-ux-pro-max
+  - venice-audio-music
+  - venice-audio-speech
+  - venice-image-edit
+  - venice-image-generate
+  - venice-video
+  - vfx-text-cursor
+  - video-downloader
+  - video-hyperframes
+  - web-artifacts-builder
+  - web-design-guidelines
+  - weread-year-in-review-video-template
+  - wpds
+  - youtube-clipper
+
+
+# ── OpenCode MCP Servers: 53 total (40 enabled, 13 disabled) ──
+# Defined in .config/opencode/opencode.json
+# Auto-installed via npx on first use — no manual install needed.
+
+opencode_mcp_servers:
+  # Remote (URL-based)
+  - name: context7
+    type: remote
+    url: https://mcp.context7.com/mcp
+    enabled: true
+  - name: gh_grep
+    type: remote
+    url: https://mcp.grep.app
+    enabled: true
+  - name: sentry
+    type: remote
+    url: https://mcp.sentry.dev/mcp
+    enabled: false
+  - name: blender
+    type: remote
+    url: https://mcp.blender.org/mcp
+    enabled: false
+  - name: godot
+    type: remote
+    url: https://mcp.godotengine.org/mcp
+    enabled: false
+
+  # Local (npx-based) — General & Development
+  - name: playwright
+    type: local
+    package: "@playwright/mcp"
+    enabled: true
+  - name: filesystem
+    type: local
+    package: "@modelcontextprotocol/server-filesystem"
+    enabled: true
+  - name: seqthink
+    type: local
+    package: "@modelcontextprotocol/server-sequential-thinking"
+    enabled: true
+  - name: memory
+    type: local
+    package: "@modelcontextprotocol/server-memory"
+    enabled: true
+  - name: chrome-devtools
+    type: local
+    package: "chrome-devtools-mcp"
+    enabled: true
+  - name: docker
+    type: local
+    package: "docker-mcp"
+    enabled: true
+  - name: github
+    type: local
+    package: "@fre4x/github"
+    enabled: true
+  - name: browser-use
+    type: local
+    package: "browser-use-mcp"
+    enabled: true
+  - name: tavily
+    type: local
+    package: "tavily-mcp"
+    enabled: true
+  - name: firecrawl
+    type: local
+    package: "firecrawl-mcp"
+    enabled: true
+  - name: brave-search
+    type: local
+    package: "@brave/brave-search-mcp-server"
+    enabled: true
+  - name: exa
+    type: local
+    package: "exa-mcp-server"
+    enabled: true
+  - name: perplexity
+    type: local
+    package: "@perplexity-ai/mcp-server"
+    enabled: true
+  - name: postgres
+    type: local
+    package: "enhanced-postgres-mcp-server"
+    enabled: true
+  - name: sqlite
+    type: local
+    package: "mcp-server-sqlite-npx"
+    enabled: true
+  - name: discord
+    type: local
+    package: "@pasympa/discord-mcp"
+    enabled: true
+  - name: sshmcp
+    type: local
+    package: "@nl4ever/sshmcp"
+    enabled: true
+  - name: semgrep
+    type: local
+    package: "mcp-server-semgrep"
+    enabled: true
+  - name: skillssafe
+    type: local
+    package: "skillssafe-mcp"
+    enabled: true
+
+  # Local — Security & Pentesting
+  - name: nmap
+    type: local
+    package: "@ebowwa/mcp-nmap"
+    enabled: true
+  - name: nuclei
+    type: local
+    package: "gc-nuclei-mcp"
+    enabled: true
+  - name: sqlmap
+    type: local
+    package: "@iflow-mcp/stanleyj03-sqlmap-mcp"
+    enabled: true
+  - name: osint
+    type: local
+    package: "osint-mcp-server"
+    enabled: true
+  - name: mitre-attack
+    type: local
+    package: "@imouiche/mitre-attack-mcp-server"
+    enabled: true
+  - name: cve-search
+    type: local
+    package: "@iflow-mcp/cyreslab-circl-cve-search-mcp-server"
+    enabled: true
+  - name: wayback
+    type: local
+    package: "mcp-wayback-machine"
+    enabled: true
+  - name: webhook
+    type: local
+    package: "@kevinwatt/mcp-webhook"
+    enabled: true
+  - name: pentest-mcp
+    type: local
+    package: "pentest-mcp"
+    enabled: true
+  - name: js-reverse
+    type: local
+    package: "js-reverse-mcp"
+    enabled: true
+  - name: burp-bridge
+    type: local
+    package: "@iflow-mcp/fwaeytens-burp-mcp-bridge"
+    enabled: false
+  - name: cheatengine
+    type: local
+    package: "cheatengine"
+    enabled: false
+
+  # Local — Design & Media
+  - name: open-design
+    type: local
+    command: ["od-design", "mcp", "--daemon-url", "http://127.0.0.1:7456"]
+    enabled: true
+  - name: open-design-live-artifacts
+    type: local
+    command: ["od-design", "mcp", "live-artifacts", "--daemon-url", "http://127.0.0.1:7456"]
+    enabled: false
+  - name: figma
+    type: local
+    package: "@anthropic/mcp-server-figma"
+    enabled: false
+  - name: google-sheets
+    type: local
+    package: "@anthropic/mcp-server-google-sheets"
+    enabled: false
+  - name: grafana
+    type: local
+    package: "@anthropic/mcp-server-grafana"
+    enabled: false
+
+  # Local — Cloud & Infrastructure
+  - name: hetzner
+    type: local
+    package: "@danfarrdotcom/hetzner-mcp"
+    enabled: true
+  - name: hetzner-aiwerk
+    type: local
+    package: "@aiwerk/mcp-server-hetzner"
+    enabled: true
+  - name: cloudflare-itunified
+    type: local
+    package: "@itunified.io/mcp-cloudflare"
+    enabled: true
+  - name: cloudflare
+    type: local
+    package: "@cloudflare/mcp-server-cloudflare"
+    enabled: true
+  - name: sonarqube
+    type: local
+    package: "sonarqube-api-mcp"
+    enabled: false
+  - name: gitlab
+    type: local
+    package: "efficient-gitlab-mcp-server"
+    enabled: false
+
+  # Local — Communication
+  - name: telegram
+    type: local
+    package: "telegram-mcp-bot"
+    enabled: false
+  - name: whatsapp
+    type: local
+    package: "@sjawhar/whatsapp-mcp"
+    enabled: false
+  - name: spotify
+    type: local
+    package: "spotify-mcp"
+    enabled: false
+
+  # Remote — Custom
+  - name: ida-decompiler
+    type: remote
+    url: http://d.i:8745/mcp
+    enabled: true
+  - name: hof-wiki
+    type: remote
+    url: http://s.i/mcp
+    enabled: true
+
+  # Local — Analysis
+  - name: wireshark
+    type: local
+    command: ["uvx", "wireshark-mcp"]
+    enabled: true
+
+
+# ── OpenCode Plugins: 27 total ────────────────────────────────
+# Defined in .config/opencode/opencode.json → plugin[]
+# Auto-installed via npm on first use.
+
+opencode_plugins:
+  - opencode-notify
+  - opencode-shell-strategy
+  - opencode-wakatime
+  - opencode-vibeguard
+  - opencode-supermemory
+  - opencode-skills-collection
+  - opencode-scheduler
+  - opencode-plugin-langfuse
+  - opencode-subagent-statusline
+  - opencode-background-agents
+  - opencode-worktree
+  - opencode-morph-fast-apply
+  - opencode-morph-plugin
+  - opencode-dynamic-context-pruning
+  - opencode-pty
+  - opencode-type-inject
+  - opencode-skillful
+  - opencode-sentry-monitor
+  - opencode-firecrawl
+  - opencode-conductor
+  - opencode-md-table-formatter
+  - opencode-devcontainers
+  - opencode-gemini-auth
+  - opencode-antigravity-auth
+  - opencode-google-antigravity-auth
+  - "@rama_nigg/open-cursor@latest"
+  - "opencode-zellij-namer"
+  - "opencode-jfrog-plugin"
+  - "@plannotator/opencode"
+  - "@openspoon/subtask2"
+  - micode
+  - octto

@@ -1,0 +1,77 @@
+# ═══════════════════════════════════════════════════════════════
+# Codex CLI Configuration
+# Mirrors the OpenCode setup from opencodeSetup repo
+# ═══════════════════════════════════════════════════════════════
+
+# ── Shell ──────────────────────────────────────────────────────
+shell = "fish"
+
+# ── Model / Provider ───────────────────────────────────────────
+# Primary model
+model = "openrouter/owl-alpha"
+# Fallback / lightweight model for simple tasks
+small_model = "openrouter/owl-flash"
+
+# ── Auto-update ────────────────────────────────────────────────
+autoupdate = "notify"
+
+# ── Default Agent ──────────────────────────────────────────────
+default_agent = "build"
+
+# ── Formatter Configuration ────────────────────────────────────
+# Biome for JS/TS/HTML/CSS/Svelte/Astro (primary)
+# Ruff for Python
+# cargo fmt for Rust
+# gofmt for Go
+[formatter]
+prettier = { disabled = true }
+biome = {}
+ruff = { command = ["ruff", "format", "$FILE"], extensions = [".py", ".pyi"] }
+cargofmt = {}
+gofmt = {}
+
+# ── LSP ───────────────────────────────────────────────────────
+lsp = true
+
+# ── Instructions (AGENTS.md) ──────────────────────────────────
+# Points to the same AGENTS.md used by OpenCode
+instructions = ["../opencode/AGENTS.md"]
+
+# ── TUI Theme ──────────────────────────────────────────────────
+[theme]
+name = "catppuccin-mocha"
+scroll_speed = 3
+scroll_acceleration = { enabled = true }
+diff_style = "auto"
+mouse = true
+
+# ── Permission Model ───────────────────────────────────────────
+# Wildcard allow with specific ask rules
+[permission]
+default = "allow"
+[permission.bash]
+"git push*" = "ask"
+"rm -rf*" = "ask"
+"sudo*" = "ask"
+"docker system prune*" = "ask"
+"kubectl delete*" = "ask"
+default = "allow"
+webfetch = "allow"
+
+# ── Compaction / Context Management ─────────────────────────────
+[compaction]
+auto = true
+prune = true
+reserved = 10000
+preserve_recent_tokens = 1000000
+
+# ── Experimental ───────────────────────────────────────────────
+[experimental]
+background_subagents = true
+
+# ── Agent Model Overrides ──────────────────────────────────────
+[agent.plan]
+model = "openrouter/owl-flash"
+
+[agent.designer]
+model = "openrouter/owl-alpha"

@@ -1,5 +1,5 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Plans and reviews infrastructure, containers, networking, deployment, and rollback"
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
@@ -7,7 +7,7 @@ variant: xhigh
 reasoningEffort: xhigh
 reasoningSummary: detailed
 textVerbosity: medium
-steps: 18
+steps: 16
 permission:
   "*": ask
   read: allow
@@ -35,9 +35,5 @@ permission:
     git status*: allow
     git diff*: allow
     git log*: allow
-    rg *: allow
-    fd *: allow
-    find *: allow
-    ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Diagnose current state before changing it. Preserve a rollback path, avoid destructive remote operations, and provide exact validation and recovery steps.

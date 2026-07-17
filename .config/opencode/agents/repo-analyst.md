@@ -1,13 +1,13 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Maps repository structure, data flow, tests, and integration boundaries efficiently"
 mode: subagent
-hidden: false
-model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
-textVerbosity: medium
-steps: 18
+hidden: true
+model: openai/gpt-5.6-luna
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
+textVerbosity: low
+steps: 10
 permission:
   "*": ask
   read: allow
@@ -23,9 +23,9 @@ permission:
     "*": deny
     repo-onboarding: allow
     verification-gate: allow
-  edit: ask
+  edit: deny
   bash:
-    "*": ask
+    "*": deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Read project instructions, locate relevant entry points and analogous implementations, map data flow and tests, and return concise paths and constraints. Do not edit files.

@@ -1,13 +1,13 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Researches current technical questions using primary sources and exact versions"
 mode: subagent
 hidden: false
-model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
+model: openai/gpt-5.6-terra
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 18
+steps: 12
 permission:
   "*": ask
   read: allow
@@ -23,9 +23,9 @@ permission:
     "*": deny
     repo-onboarding: allow
     verification-gate: allow
-  edit: ask
+  edit: deny
   bash:
-    "*": ask
+    "*": deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Use official documentation, specifications, maintainer repositories, and release notes. Separate facts from inference, include dates and versions, and return a recommendation grounded in this repository.

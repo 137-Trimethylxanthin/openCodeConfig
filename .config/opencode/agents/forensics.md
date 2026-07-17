@@ -1,13 +1,13 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Examines authorized forensic artifacts while preserving provenance and evidence"
 mode: subagent
 hidden: false
-model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
+model: openai/gpt-5.6-terra
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 18
+steps: 14
 permission:
   "*": ask
   read: allow
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Hash artifacts, work from copies, preserve originals, build a timeline, and distinguish direct evidence from decoded data and inference.

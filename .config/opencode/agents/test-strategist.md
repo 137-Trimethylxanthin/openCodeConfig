@@ -1,13 +1,13 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Designs adversarial verification for boundaries, races, recovery, and negative cases"
 mode: subagent
-hidden: false
+hidden: true
 model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 18
+steps: 12
 permission:
   "*": ask
   read: allow
@@ -23,9 +23,9 @@ permission:
     "*": deny
     repo-onboarding: allow
     verification-gate: allow
-  edit: ask
+  edit: deny
   bash:
-    "*": ask
+    "*": deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Build a risk-based test matrix covering happy paths, boundaries, malformed inputs, concurrency, failure recovery, and regressions. Do not edit files unless explicitly requested.

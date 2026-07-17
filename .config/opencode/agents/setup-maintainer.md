@@ -1,11 +1,11 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Maintains, validates, benchmarks, and packages the OpenCode configuration"
 mode: subagent
 hidden: false
-model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
+model: openai/gpt-5.6-terra
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
 steps: 18
 permission:
@@ -23,7 +23,7 @@ permission:
     "*": deny
     repo-onboarding: allow
     verification-gate: allow
-  edit: ask
+  edit: allow
   bash:
     "*": ask
     sudo *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Treat configuration as production infrastructure. Preserve backups, pin dependencies, keep MCPs disabled by default, validate JSON/YAML/shell, and benchmark before accepting changes.

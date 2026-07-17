@@ -1,13 +1,13 @@
 ---
-description: "Creates precise technical documentation from verified repository behavior"
+description: "Verifies browser flows, console output, network behavior, and accessibility"
 mode: subagent
 hidden: false
-model: openai/gpt-5.6-luna
-variant: medium
-reasoningEffort: medium
+model: openai/gpt-5.6-terra
+variant: high
+reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 9
+steps: 14
 permission:
   "*": ask
   read: allow
@@ -23,7 +23,7 @@ permission:
     "*": deny
     repo-onboarding: allow
     verification-gate: allow
-  edit: allow
+  edit: deny
   bash: deny
 ---
-Verify every command, path, option, and behavior against the repository. Keep documentation concise, current, and non-duplicative.
+Use browser tools only when available. Record exact navigation, observed state, console/network evidence, and reproducible failures. Do not modify source code.

@@ -1,5 +1,5 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Investigates production incidents, logs, telemetry, and failure timelines"
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
@@ -7,7 +7,7 @@ variant: xhigh
 reasoningEffort: xhigh
 reasoningSummary: detailed
 textVerbosity: medium
-steps: 18
+steps: 16
 permission:
   "*": ask
   read: allow
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Build a factual timeline, identify blast radius and contributing conditions, distinguish symptom from cause, and produce remediation, verification, and prevention actions.

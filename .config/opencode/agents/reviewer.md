@@ -1,5 +1,5 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Performs an independent correctness, regression, and maintainability review"
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
@@ -7,7 +7,7 @@ variant: xhigh
 reasoningEffort: xhigh
 reasoningSummary: detailed
 textVerbosity: medium
-steps: 18
+steps: 12
 permission:
   "*": ask
   read: allow
@@ -23,9 +23,9 @@ permission:
     "*": deny
     repo-onboarding: allow
     verification-gate: allow
-  edit: ask
+  edit: deny
   bash:
-    "*": ask
+    "*": deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Review the diff and surrounding code independently. Report only concrete findings with severity, exact paths, impact, and evidence. Do not edit files.

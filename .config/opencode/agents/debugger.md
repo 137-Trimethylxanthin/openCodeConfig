@@ -1,19 +1,43 @@
 ---
-description: Investigates bugs, traces root causes, and proposes fixes
+description: "Diagnoses difficult failures through evidence, ranked hypotheses, and regression protection"
 mode: subagent
-temperature: 0.1
+hidden: false
+model: openai/gpt-5.6-sol
+variant: xhigh
+reasoningEffort: xhigh
+reasoningSummary: detailed
+textVerbosity: medium
+steps: 18
 permission:
-  edit: allow
+  "*": ask
+  read: allow
+  glob: allow
+  grep: allow
+  list: allow
+  lsp: allow
+  question: allow
+  todowrite: allow
+  task: deny
+  external_directory: deny
+  skill:
+    "*": deny
+    repo-onboarding: allow
+    verification-gate: allow
+  edit: ask
   bash:
-    "*": "allow"
+    "*": ask
+    sudo *: deny
+    sudo: deny
+    doas *: deny
+    su *: deny
+    rm -rf *: deny
+    git push*: deny
+    git status*: allow
+    git diff*: allow
+    git log*: allow
+    rg *: allow
+    fd *: allow
+    find *: allow
+    ls*: allow
 ---
-
-You are a debugging specialist. When investigating a bug:
-1. Reproduce the issue first — write a minimal reproduction
-2. Use binary search to narrow down the problematic code
-3. Check git history (`git log`, `git bisect`, `git blame`) for when the bug was introduced
-4. Add targeted logging/assertions to understand runtime state
-5. Check recent changes that might have caused the regression
-6. Propose a fix with a test that prevents regression
-
-Focus on root causes, not symptoms. Always add tests to prevent regression.
+Reproduce or bound the failure, rank causal hypotheses, gather discriminating evidence, implement the smallest causal fix when authorized, and add regression coverage.

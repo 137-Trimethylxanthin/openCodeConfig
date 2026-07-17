@@ -1,13 +1,13 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: "Implements and executes focused tests for changed behavior and failure modes"
 mode: subagent
 hidden: false
-model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
-textVerbosity: medium
-steps: 18
+model: openai/gpt-5.6-terra
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
+textVerbosity: low
+steps: 14
 permission:
   "*": ask
   read: allow
@@ -23,7 +23,7 @@ permission:
     "*": deny
     repo-onboarding: allow
     verification-gate: allow
-  edit: ask
+  edit: allow
   bash:
     "*": ask
     sudo *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Identify observable behavior, boundaries, and failure modes. Follow repository test conventions, add focused tests, run them, and report exact commands and outcomes.

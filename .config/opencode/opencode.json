@@ -1,609 +1,358 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "shell": "fish",
-  "autoupdate": "notify",
-  "model": "deepseek/deepseek-v4-pro",
-  "small_model": "deepseek/deepseek-v4-flash",
+  "model": "openai/gpt-5.6-terra",
+  "small_model": "openai/gpt-5.6-luna",
   "default_agent": "build",
-  "provider": {},
-  "plugin": [
-    "opencode-notify",
-    "opencode-shell-strategy",
-    "opencode-wakatime",
-    "opencode-vibeguard",
-    "opencode-supermemory",
-    "opencode-skills-collection",
-    "opencode-scheduler",
-    "opencode-plugin-langfuse",
-    "opencode-subagent-statusline",
-    "opencode-background-agents",
-    "opencode-worktree",
-    "opencode-morph-fast-apply",
-    "opencode-morph-plugin",
-    "opencode-dynamic-context-pruning",
-    "opencode-pty",
-    "opencode-type-inject",
-    "opencode-skillful",
-    "opencode-sentry-monitor",
-    "opencode-firecrawl",
-    "opencode-conductor",
-    "opencode-md-table-formatter",
-    "opencode-devcontainers",
-    "opencode-gemini-auth",
-    "opencode-antigravity-auth",
-    "opencode-google-antigravity-auth",
-    "@rama_nigg/open-cursor@latest",
-    "opencode-zellij-namer",
-    "opencode-jfrog-plugin",
-    "@plannotator/opencode",
-    "@openspoon/subtask2",
-    "micode",
-    "octto",
-    "./plugins/sudo-plugin.ts"
-  ],
-  "formatter": {
-    "prettier": {
-      "disabled": true
-    },
-    "biome": {},
-    "ruff": {
-      "command": [
-        "ruff",
-        "format",
-        "$FILE"
-      ],
-      "extensions": [
-        ".py",
-        ".pyi"
-      ]
-    },
-    "cargofmt": {},
-    "gofmt": {}
-  },
-  "lsp": true,
-  "instructions": [
-    "../opencode/AGENTS.md"
-  ],
-  "mcp": {
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
-    },
-    "gh_grep": {
-      "type": "remote",
-      "url": "https://mcp.grep.app"
-    },
-    "playwright": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@playwright/mcp"
-      ],
-      "enabled": true
-    },
-    "filesystem": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "{env:HOME}"
-      ],
-      "enabled": true
-    },
-    "seqthink": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "enabled": true
-    },
-    "memory": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ],
-      "enabled": true
-    },
-    "chrome-devtools": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "chrome-devtools-mcp"
-      ],
-      "enabled": true
-    },
-    "docker": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "docker-mcp"
-      ],
-      "enabled": true
-    },
-    "github": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@fre4x/github"
-      ],
-      "enabled": true,
-      "environment": {
-        "GITHUB_TOKEN": "{env:GITHUB_TOKEN}"
-      }
-    },
-    "browser-use": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "browser-use-mcp"
-      ],
-      "enabled": true
-    },
-    "nmap": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@ebowwa/mcp-nmap"
-      ],
-      "enabled": true
-    },
-    "nuclei": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "gc-nuclei-mcp"
-      ],
-      "enabled": true
-    },
-    "sqlmap": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@iflow-mcp/stanleyj03-sqlmap-mcp"
-      ],
-      "enabled": true
-    },
-    "osint": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "osint-mcp-server"
-      ],
-      "enabled": true,
-      "environment": {
-        "SHODAN_API_KEY": "{env:SHODAN_API_KEY}",
-        "VIRUSTOTAL_API_KEY": "{env:VIRUSTOTAL_API_KEY}",
-        "SECURITYTRAILS_API_KEY": "{env:SECURITYTRAILS_API_KEY}",
-        "CENSYS_API_ID": "{env:CENSYS_API_ID}",
-        "CENSYS_API_SECRET": "{env:CENSYS_API_SECRET}"
-      }
-    },
-    "mitre-attack": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@imouiche/mitre-attack-mcp-server"
-      ],
-      "enabled": true
-    },
-    "cve-search": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@iflow-mcp/cyreslab-circl-cve-search-mcp-server"
-      ],
-      "enabled": true
-    },
-    "wayback": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-wayback-machine"
-      ],
-      "enabled": true
-    },
-    "burp-bridge": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@iflow-mcp/fwaeytens-burp-mcp-bridge"
-      ],
-      "enabled": false
-    },
-    "cheatengine": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "cheatengine"
-      ],
-      "enabled": false
-    },
-    "js-reverse": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "js-reverse-mcp"
-      ],
-      "enabled": true
-    },
-    "webhook": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@kevinwatt/mcp-webhook"
-      ],
-      "enabled": true
-    },
-    "pentest-mcp": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "pentest-mcp"
-      ],
-      "enabled": true
-    },
-    "semgrep": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-server-semgrep"
-      ],
-      "enabled": true
-    },
-    "wireshark": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "wireshark-mcp"
-      ],
-      "enabled": true
-    },
-    "skillssafe": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "skillssafe-mcp"
-      ],
-      "enabled": true
-    },
-    "tavily": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "tavily-mcp"
-      ],
-      "enabled": true
-    },
-    "firecrawl": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "firecrawl-mcp"
-      ],
-      "enabled": true
-    },
-    "brave-search": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@brave/brave-search-mcp-server"
-      ],
-      "enabled": true
-    },
-    "exa": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "exa-mcp-server"
-      ],
-      "enabled": true
-    },
-    "sonarqube": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "sonarqube-api-mcp"
-      ],
-      "enabled": false
-    },
-    "postgres": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "enhanced-postgres-mcp-server"
-      ],
-      "enabled": true
-    },
-    "sqlite": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-server-sqlite-npx"
-      ],
-      "enabled": true
-    },
-    "gitlab": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "efficient-gitlab-mcp-server"
-      ],
-      "enabled": false
-    },
-    "perplexity": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@perplexity-ai/mcp-server"
-      ],
-      "enabled": true
-    },
-    "spotify": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "spotify-mcp"
-      ],
-      "enabled": false
-    },
-    "open-design": {
-      "type": "local",
-      "command": [
-        "od-design",
-        "mcp",
-        "--daemon-url",
-        "http://127.0.0.1:7456"
-      ],
-      "enabled": true
-    },
-    "open-design-live-artifacts": {
-      "type": "local",
-      "command": [
-        "od-design",
-        "mcp",
-        "live-artifacts",
-        "--daemon-url",
-        "http://127.0.0.1:7456"
-      ],
-      "enabled": false
-    },
-    "sentry": {
-      "type": "remote",
-      "url": "https://mcp.sentry.dev/mcp",
-      "oauth": {},
-      "enabled": false
-    },
-    "figma": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@anthropic/mcp-server-figma"
-      ],
-      "enabled": false,
-      "environment": {
-        "FIGMA_API_KEY": "{env:FIGMA_API_KEY}"
-      }
-    },
-    "google-sheets": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@anthropic/mcp-server-google-sheets"
-      ],
-      "enabled": false,
-      "environment": {
-        "GOOGLE_CLIENT_EMAIL": "{env:GOOGLE_CLIENT_EMAIL}",
-        "GOOGLE_PRIVATE_KEY": "{env:GOOGLE_PRIVATE_KEY}"
-      }
-    },
-    "grafana": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@anthropic/mcp-server-grafana"
-      ],
-      "enabled": false,
-      "environment": {
-        "GRAFANA_URL": "{env:GRAFANA_URL}",
-        "GRAFANA_API_KEY": "{env:GRAFANA_API_KEY}"
-      }
-    },
-    "blender": {
-      "type": "remote",
-      "url": "https://mcp.blender.org/mcp",
-      "enabled": false
-    },
-    "godot": {
-      "type": "remote",
-      "url": "https://mcp.godotengine.org/mcp",
-      "enabled": false
-    },
-    "discord": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@pasympa/discord-mcp"
-      ],
-      "enabled": true,
-      "environment": {
-        "DISCORD_BOT_TOKEN": "{env:DISCORD_BOT_TOKEN}",
-        "DISCORD_APP_ID": "{env:DISCORD_APP_ID}",
-        "DISCORD_GUILD_ID": "{env:DISCORD_GUILD_ID}"
-      }
-    },
-    "telegram": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "telegram-mcp-bot"
-      ],
-      "enabled": false,
-      "environment": {
-        "TELEGRAM_BOT_TOKEN": "{env:TELEGRAM_BOT_TOKEN}"
-      }
-    },
-    "whatsapp": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@sjawhar/whatsapp-mcp"
-      ],
-      "enabled": false
-    },
-    "hetzner": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@danfarrdotcom/hetzner-mcp"
-      ],
-      "enabled": true,
-      "environment": {
-        "HCLOUD_TOKEN": "{env:HCLOUD_TOKEN}"
-      }
-    },
-    "hetzner-aiwerk": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@aiwerk/mcp-server-hetzner"
-      ],
-      "enabled": true,
-      "environment": {
-        "HCLOUD_TOKEN": "{env:HCLOUD_TOKEN}"
-      }
-    },
-    "cloudflare-itunified": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@itunified.io/mcp-cloudflare"
-      ],
-      "enabled": true,
-      "environment": {
-        "CLOUDFLARE_API_TOKEN": "{env:CLOUDFLARE_API_TOKEN}",
-        "CLOUDFLARE_ACCOUNT_ID": "{env:CLOUDFLARE_ACCOUNT_ID}"
-      }
-    },
-    "cloudflare": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@cloudflare/mcp-server-cloudflare"
-      ],
-      "enabled": true
-    },
-    "sshmcp": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@nl4ever/sshmcp"
-      ],
-      "enabled": true
-    },
-    "ida-decompiler": {
-      "type": "remote",
-      "url": "http://d.i:8745/mcp",
-      "enabled": true
-    },
-    "hof-wiki": {
-      "type": "remote",
-      "url": "http://s.i/mcp",
-      "headers": {
-        "Authorization": "Bearer {env:HOF_WIKI_TOKEN}"
-      },
-      "enabled": true
-    }
-  },
-  "permission": {
-    "*": "allow",
-    "bash": {
-      "git push*": "ask",
-      "rm -rf*": "ask",
-      "sudo*": "ask",
-      "docker system prune*": "ask",
-      "kubectl delete*": "ask",
-      "*": "allow"
-    },
-    "webfetch": "allow"
+  "enabled_providers": ["openai"],
+  "autoupdate": "notify",
+  "share": "disabled",
+  "subagent_depth": 1,
+  "tool_output": {
+    "max_lines": 800,
+    "max_bytes": 40000
   },
   "compaction": {
     "auto": true,
     "prune": true,
-    "reserved": 10000,
-    "preserve_recent_tokens": 1000000
+    "reserved": 16000
   },
   "watcher": {
     "ignore": [
-      "node_modules/**",
-      "dist/**",
-      "build/**",
-      ".git/**",
-      "target/**",
-      "__pycache__/**",
-      ".venv/**",
-      ".next/**",
-      ".astro/**",
-      "coverage/**",
-      ".cache/**"
+      "**/.git/**",
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/target/**",
+      "**/.venv/**",
+      "**/__pycache__/**",
+      "**/.gradle/**",
+      "**/.idea/**"
     ]
   },
-  "experimental": {
-    "background_subagents": true
+  "instructions": ["AGENTS.md"],
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-5.6-sol": {
+          "options": {
+            "reasoningEffort": "xhigh",
+            "reasoningSummary": "detailed",
+            "textVerbosity": "medium",
+            "include": ["reasoning.encrypted_content"],
+            "store": false
+          },
+          "variants": {
+            "medium": {"reasoningEffort": "medium", "reasoningSummary": "auto", "textVerbosity": "medium"},
+            "high": {"reasoningEffort": "high", "reasoningSummary": "detailed", "textVerbosity": "medium"},
+            "xhigh": {"reasoningEffort": "xhigh", "reasoningSummary": "detailed", "textVerbosity": "medium"},
+            "max": {"reasoningEffort": "max", "reasoningSummary": "detailed", "textVerbosity": "medium"},
+            "none": {"disabled": true},
+            "minimal": {"disabled": true},
+            "low": {"disabled": true},
+            "fast": {"disabled": true}
+          }
+        },
+        "gpt-5.6-terra": {
+          "options": {
+            "reasoningEffort": "high",
+            "reasoningSummary": "auto",
+            "textVerbosity": "medium",
+            "include": ["reasoning.encrypted_content"],
+            "store": false
+          },
+          "variants": {
+            "medium": {"reasoningEffort": "medium", "reasoningSummary": "auto", "textVerbosity": "medium"},
+            "high": {"reasoningEffort": "high", "reasoningSummary": "auto", "textVerbosity": "medium"},
+            "xhigh": {"reasoningEffort": "xhigh", "reasoningSummary": "detailed", "textVerbosity": "medium"},
+            "max": {"reasoningEffort": "max", "reasoningSummary": "detailed", "textVerbosity": "medium"},
+            "none": {"disabled": true},
+            "minimal": {"disabled": true},
+            "low": {"disabled": true},
+            "fast": {"disabled": true}
+          }
+        },
+        "gpt-5.6-luna": {
+          "options": {
+            "reasoningEffort": "medium",
+            "reasoningSummary": "auto",
+            "textVerbosity": "low",
+            "include": ["reasoning.encrypted_content"],
+            "store": false
+          },
+          "variants": {
+            "medium": {"reasoningEffort": "medium", "reasoningSummary": "auto", "textVerbosity": "low"},
+            "high": {"reasoningEffort": "high", "reasoningSummary": "auto", "textVerbosity": "medium"},
+            "xhigh": {"reasoningEffort": "xhigh", "reasoningSummary": "detailed", "textVerbosity": "medium"},
+            "max": {"reasoningEffort": "max", "reasoningSummary": "detailed", "textVerbosity": "medium"},
+            "none": {"disabled": true},
+            "minimal": {"disabled": true},
+            "low": {"disabled": true},
+            "fast": {"disabled": true}
+          }
+        }
+      }
+    }
+  },
+  "permission": {
+    "*": "ask",
+    "read": {
+      "*": "allow",
+      ".env": "deny",
+      ".env.*": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/*credentials*": "ask",
+      "**/*secret*": "ask",
+      "**/*.pem": "ask",
+      "**/*.key": "ask"
+    },
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "lsp": "allow",
+    "skill": {"*": "deny"},
+    "todowrite": "allow",
+    "question": "allow",
+    "task": "allow",
+    "webfetch": "ask",
+    "websearch": "ask",
+    "external_directory": "deny",
+    "edit": "ask",
+    "bash": {
+      "*": "ask",
+      "git push*": "ask",
+      "git reset --hard*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git branch*": "allow",
+      "git ls-files*": "allow",
+      "git rev-parse*": "allow",
+      "pwd": "allow",
+      "ls*": "allow",
+      "tree*": "allow",
+      "rg *": "allow",
+      "fd *": "allow",
+      "find *": "allow",
+      "wc *": "allow",
+      "file *": "allow",
+      "stat *": "allow",
+      "npm test*": "allow",
+      "npm run test*": "allow",
+      "npm run lint*": "allow",
+      "npm run typecheck*": "allow",
+      "pnpm test*": "allow",
+      "pnpm lint*": "allow",
+      "bun test*": "allow",
+      "cargo test*": "allow",
+      "cargo check*": "allow",
+      "go test*": "allow",
+      "go vet*": "allow",
+      "pytest*": "allow",
+      "python -m pytest*": "allow",
+      "ruff check*": "allow",
+      "biome check*": "allow",
+      "shellcheck *": "allow",
+      "shfmt -d *": "allow",
+      "./gradlew test*": "allow",
+      "./gradlew lint*": "allow",
+      "sudo *": "deny",
+      "sudo": "deny",
+      "doas *": "deny",
+      "su *": "deny",
+      "rm -rf *": "deny",
+      "rm -fr *": "deny",
+      "git clean *": "deny",
+      "git push --force*": "deny",
+      "git push -f*": "deny"
+    },
+    "context7_*": "deny",
+    "gh_grep_*": "deny",
+    "fetch_*": "deny",
+    "playwright_*": "deny",
+    "semgrep_*": "deny"
   },
   "agent": {
-    "plan": {
-      "model": "deepseek/deepseek-v4-flash"
+    "build": {
+      "description": "Primary implementation orchestrator. Delegates research, exploration, testing, and independent review based on task complexity.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-terra",
+      "variant": "high",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "textVerbosity": "medium",
+      "steps": 32,
+      "prompt": "{file:prompts/build.txt}",
+      "permission": {
+        "edit": "allow",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "repo-onboarding": "allow",
+          "systematic-debugging": "allow",
+          "verification-gate": "allow",
+          "safe-refactor": "allow",
+          "agent-handoff": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "explore": "allow",
+          "scout": "allow",
+          "architect": "allow",
+          "implementer": "allow",
+          "debugger": "allow",
+          "tester": "allow",
+          "reviewer": "allow",
+          "spec-reviewer": "allow",
+          "test-strategist": "allow",
+          "skeptic": "allow",
+          "simplicity-reviewer": "allow",
+          "performance-reviewer": "allow",
+          "security-review": "allow",
+          "researcher": "allow",
+          "docs-writer": "allow",
+          "infra-reviewer": "allow",
+          "sysadmin": "allow",
+          "ctf-lead": "allow",
+          "setup-maintainer": "allow"
+        }
+      }
     },
-    "designer": {
-      "model": "deepseek/deepseek-v4-pro"
-    }
-  }
+    "plan": {
+      "description": "Read-only planning and architecture orchestrator for large, uncertain, or high-impact changes.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "variant": "xhigh",
+      "reasoningEffort": "xhigh",
+      "reasoningSummary": "detailed",
+      "textVerbosity": "medium",
+      "steps": 22,
+      "prompt": "{file:prompts/plan.txt}",
+      "permission": {
+        "edit": "deny",
+        "external_directory": "deny",
+        "bash": "deny",
+        "skill": {"*": "deny", "repo-onboarding": "allow", "evidence-research": "allow", "agent-handoff": "allow"},
+        "task": {"*": "deny", "explore": "allow", "scout": "allow", "architect": "allow", "researcher": "allow", "skeptic": "allow", "security-review": "allow", "performance-reviewer": "allow"}
+      }
+    },
+    "project": {
+      "description": "Leads high-impact, cross-cutting implementation with independent review and rollback planning.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "variant": "xhigh",
+      "reasoningEffort": "xhigh",
+      "reasoningSummary": "detailed",
+      "textVerbosity": "medium",
+      "steps": 44,
+      "prompt": "{file:prompts/project.txt}",
+      "permission": {"edit": "allow", "external_directory": "deny", "task": {"*": "deny", "explore": "allow", "repo-analyst": "allow", "architect": "allow", "implementer": "allow", "debugger": "allow", "tester": "allow", "reviewer": "allow", "spec-reviewer": "allow", "test-strategist": "allow", "skeptic": "allow", "simplicity-reviewer": "allow", "performance-reviewer": "allow", "security-review": "allow", "researcher": "allow", "docs-writer": "allow", "infra-reviewer": "allow", "designer": "allow"}}},
+    "research": {
+      "description": "Researches current APIs, technical questions, and implementation choices using primary sources.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-terra",
+      "variant": "high",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "textVerbosity": "medium",
+      "steps": 24,
+      "prompt": "{file:prompts/research.txt}",
+      "permission": {"edit": "deny", "bash": "deny", "external_directory": "deny", "webfetch": "allow", "websearch": "allow", "context7_*": "allow", "gh_grep_*": "allow", "task": {"*": "deny", "scout": "allow", "researcher": "allow", "work-research": "allow", "repo-analyst": "allow"}}},
+    "browser": {
+      "description": "Verifies browser flows, console output, network behavior, and accessibility.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-terra",
+      "variant": "high",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "textVerbosity": "medium",
+      "steps": 24,
+      "prompt": "{file:prompts/browser.txt}",
+      "permission": {"edit": "deny", "bash": "deny", "external_directory": "deny", "playwright_*": "allow", "task": {"*": "deny", "browser-checker": "allow", "designer": "allow", "tester": "allow", "researcher": "allow"}}},
+    "security": {
+      "description": "Performs defensive security review of code, configuration, and trust boundaries.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "variant": "max",
+      "reasoningEffort": "max",
+      "reasoningSummary": "detailed",
+      "textVerbosity": "medium",
+      "steps": 36,
+      "prompt": "{file:prompts/security.txt}",
+      "permission": {"edit": "deny", "bash": "deny", "external_directory": "deny", "semgrep_*": "allow", "task": {"*": "deny", "security-review": "allow", "forensics": "allow", "reverse-engineer": "allow", "incident-review": "allow", "researcher": "allow", "repo-analyst": "allow"}}},
+    "ctf": {
+      "description": "Coordinates authorized CTF and lab work across web, crypto, reversing, pwn, and forensics.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "variant": "max",
+      "reasoningEffort": "max",
+      "reasoningSummary": "detailed",
+      "textVerbosity": "medium",
+      "steps": 44,
+      "prompt": "{file:prompts/ctf.txt}",
+      "permission": {"edit": "ask", "bash": {"*": "ask", "sudo *": "deny", "sudo": "deny", "doas *": "deny", "su *": "deny", "rm -rf *": "deny", "rm -fr *": "deny", "git clean *": "deny", "git push*": "deny"}, "external_directory": "deny", "semgrep_*": "allow", "task": {"*": "deny", "ctf-lead": "allow", "forensics": "allow", "reverse-engineer": "allow", "researcher": "allow", "security-review": "allow"}}},
+    "infra": {
+      "description": "Plans and reviews infrastructure, containers, networking, deployment, and rollback.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "variant": "xhigh",
+      "reasoningEffort": "xhigh",
+      "reasoningSummary": "detailed",
+      "textVerbosity": "medium",
+      "steps": 38,
+      "prompt": "{file:prompts/infra.txt}",
+      "permission": {"edit": "ask", "bash": {"*": "ask", "sudo *": "deny", "sudo": "deny", "doas *": "deny", "su *": "deny", "rm -rf *": "deny", "rm -fr *": "deny", "git clean *": "deny", "git push*": "deny"}, "external_directory": "deny", "task": {"*": "deny", "infra-reviewer": "allow", "sysadmin": "allow", "incident-review": "allow", "security-review": "allow", "researcher": "allow"}}},
+    "docs": {
+      "description": "Creates and maintains precise technical documentation from verified behavior.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-luna",
+      "variant": "high",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "textVerbosity": "medium",
+      "steps": 22,
+      "prompt": "{file:prompts/docs.txt}",
+      "permission": {"edit": "ask", "bash": "deny", "external_directory": "deny", "context7_*": "allow", "task": {"*": "deny", "docs-writer": "allow", "work-research": "allow", "researcher": "allow", "reviewer": "allow"}}},
+    "explore": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-luna",
+      "variant": "medium",
+      "reasoningEffort": "medium",
+      "reasoningSummary": "auto",
+      "textVerbosity": "low",
+      "steps": 8,
+      "permission": {"edit": "deny", "bash": "deny", "task": "deny", "external_directory": "deny", "skill": {"*": "deny", "repo-onboarding": "allow"}}
+    },
+    "scout": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-luna",
+      "variant": "high",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "textVerbosity": "low",
+      "steps": 10,
+      "permission": {"edit": "deny", "bash": "deny", "task": "deny", "external_directory": "deny", "skill": {"*": "deny", "evidence-research": "allow"}}
+    },
+    "general": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-terra",
+      "variant": "high",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "textVerbosity": "medium",
+      "steps": 14
+    },
+    "title": {"model": "openai/gpt-5.6-luna", "variant": "medium", "reasoningEffort": "medium", "textVerbosity": "low"},
+    "summary": {"model": "openai/gpt-5.6-luna", "variant": "medium", "reasoningEffort": "medium", "textVerbosity": "low"},
+    "compaction": {"model": "openai/gpt-5.6-terra", "variant": "high", "reasoningEffort": "high", "textVerbosity": "low"}
+  },
+  "mcp": {
+    "context7": {"type": "remote", "url": "https://mcp.context7.com/mcp", "enabled": false},
+    "gh_grep": {"type": "remote", "url": "https://mcp.grep.app", "enabled": false},
+    "playwright": {"type": "local", "command": ["npx", "-y", "@playwright/mcp@0.0.75"], "enabled": false, "timeout": 30000},
+    "semgrep": {"type": "local", "command": ["semgrep", "mcp"], "enabled": false, "timeout": 60000}
+  },
+  "plugin": []
 }

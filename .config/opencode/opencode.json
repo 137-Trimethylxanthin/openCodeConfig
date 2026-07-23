@@ -1,20 +1,598 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "openai/gpt-5.6-terra",
-  "small_model": "openai/gpt-5.6-luna",
-  "default_agent": "build",
-  "enabled_providers": ["openai"],
-  "autoupdate": "notify",
-  "share": "disabled",
-  "subagent_depth": 1,
-  "tool_output": {
-    "max_lines": 800,
-    "max_bytes": 40000
+  "agent": {
+    "browser": {
+      "description": "Read-only browser, network, console, accessibility, and UX verification. Uses one specialist by default.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-terra",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "playwright_*": "allow",
+        "skill": {
+          "*": "deny",
+          "repo-onboarding": "allow",
+          "verification-gate": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "browser-checker": "allow",
+          "designer": "allow",
+          "researcher": "allow",
+          "tester": "allow"
+        }
+      },
+      "prompt": "{file:prompts/browser.txt}",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "steps": 18,
+      "textVerbosity": "medium",
+      "variant": "high"
+    },
+    "build": {
+      "description": "Default direct coding workflow. Solves bounded work itself and escalates to at most one narrowly triggered specialist for ordinary tasks.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-terra",
+      "permission": {
+        "edit": "allow",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "agent-handoff": "allow",
+          "lean-ctx": "allow",
+          "repo-onboarding": "allow",
+          "safe-refactor": "allow",
+          "systematic-debugging": "allow",
+          "verification-gate": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "debugger": "allow",
+          "designer": "allow",
+          "explore": "allow",
+          "researcher": "allow",
+          "reviewer": "allow",
+          "security-review": "allow",
+          "setup-maintainer": "allow"
+        }
+      },
+      "prompt": "{file:prompts/build.txt}",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "steps": 20,
+      "textVerbosity": "medium",
+      "variant": "high"
+    },
+    "compaction": {
+      "model": "openai/gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "textVerbosity": "low",
+      "variant": "medium"
+    },
+    "ctf": {
+      "description": "Authorized CTF and lab coordination manager that delegates hands-on investigation and commands within confirmed scope.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "semgrep_*": "allow",
+        "skill": {
+          "*": "deny",
+          "authorized-security": "allow",
+          "evidence-research": "allow",
+          "verification-gate": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "ctf-lead": "allow",
+          "forensics": "allow",
+          "researcher": "allow",
+          "reverse-engineer": "allow",
+          "security-review": "allow"
+        }
+      },
+      "prompt": "{file:prompts/ctf.txt}",
+      "reasoningEffort": "xhigh",
+      "reasoningSummary": "detailed",
+      "steps": 32,
+      "textVerbosity": "medium",
+      "variant": "xhigh"
+    },
+    "docs": {
+      "description": "Verified documentation workflow. Uses a specialist only for a distinct research, writing, or publication-review unit.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-luna",
+      "permission": {
+        "bash": "deny",
+        "context7_*": "allow",
+        "edit": "ask",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "evidence-research": "allow",
+          "lean-ctx": "allow",
+          "repo-onboarding": "allow",
+          "verification-gate": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "docs-writer": "allow",
+          "researcher": "allow",
+          "reviewer": "allow",
+          "work-research": "allow"
+        }
+      },
+      "prompt": "{file:prompts/docs.txt}",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "steps": 16,
+      "textVerbosity": "medium",
+      "variant": "high"
+    },
+    "explore": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-luna",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "lean-ctx": "allow",
+          "repo-onboarding": "allow"
+        },
+        "task": "deny"
+      },
+      "reasoningEffort": "medium",
+      "reasoningSummary": "auto",
+      "steps": 6,
+      "textVerbosity": "low",
+      "variant": "medium"
+    },
+    "general": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-terra",
+      "permission": {
+        "edit": "ask",
+        "external_directory": "deny",
+        "task": "deny"
+      },
+      "reasoningEffort": "medium",
+      "reasoningSummary": "auto",
+      "steps": 10,
+      "textVerbosity": "medium",
+      "variant": "medium"
+    },
+    "infra": {
+      "description": "Infrastructure and operations manager with rollback-first delegation and risk-selected review.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "evidence-research": "allow",
+          "repo-onboarding": "allow",
+          "systematic-debugging": "allow",
+          "verification-gate": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "incident-review": "allow",
+          "infra-reviewer": "allow",
+          "researcher": "allow",
+          "security-review": "allow",
+          "sysadmin": "allow"
+        }
+      },
+      "prompt": "{file:prompts/infra.txt}",
+      "reasoningEffort": "high",
+      "reasoningSummary": "detailed",
+      "steps": 26,
+      "textVerbosity": "medium",
+      "variant": "high"
+    },
+    "plan": {
+      "description": "Read-only planning workflow for changes that genuinely cross components, alter data contracts, or require migration and rollback design.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "agent-handoff": "allow",
+          "evidence-research": "allow",
+          "lean-ctx": "allow",
+          "repo-onboarding": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "architect": "allow",
+          "explore": "allow",
+          "performance-reviewer": "allow",
+          "researcher": "allow",
+          "security-review": "allow",
+          "skeptic": "allow"
+        }
+      },
+      "prompt": "{file:prompts/plan.txt}",
+      "reasoningEffort": "high",
+      "reasoningSummary": "detailed",
+      "steps": 18,
+      "textVerbosity": "medium",
+      "variant": "high"
+    },
+    "project": {
+      "description": "Heavyweight implementation manager that delegates to one writer and an independent review.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "agent-handoff": "allow",
+          "evidence-research": "allow",
+          "lean-ctx": "allow",
+          "repo-onboarding": "allow",
+          "safe-refactor": "allow",
+          "systematic-debugging": "allow",
+          "verification-gate": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "architect": "allow",
+          "debugger": "allow",
+          "designer": "allow",
+          "docs-writer": "allow",
+          "explore": "allow",
+          "implementer": "allow",
+          "infra-reviewer": "allow",
+          "performance-reviewer": "allow",
+          "repo-analyst": "allow",
+          "researcher": "allow",
+          "reviewer": "allow",
+          "security-review": "allow",
+          "simplicity-reviewer": "allow",
+          "skeptic": "allow",
+          "spec-reviewer": "allow",
+          "test-strategist": "allow",
+          "tester": "allow"
+        }
+      },
+      "prompt": "{file:prompts/project.txt}",
+      "reasoningEffort": "xhigh",
+      "reasoningSummary": "detailed",
+      "steps": 30,
+      "textVerbosity": "medium",
+      "variant": "xhigh"
+    },
+    "research": {
+      "description": "Read-only current technical research using primary sources. Parallelizes only independent questions or evidence domains.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-terra",
+      "permission": {
+        "bash": "deny",
+        "context7_*": "allow",
+        "edit": "deny",
+        "external_directory": "deny",
+        "gh_grep_*": "allow",
+        "skill": {
+          "*": "deny",
+          "evidence-research": "allow",
+          "lean-ctx": "allow",
+          "repo-onboarding": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "repo-analyst": "allow",
+          "researcher": "allow",
+          "scout": "allow",
+          "work-research": "allow"
+        },
+        "webfetch": "allow",
+        "websearch": "allow"
+      },
+      "prompt": "{file:prompts/research.txt}",
+      "reasoningEffort": "high",
+      "reasoningSummary": "auto",
+      "steps": 18,
+      "textVerbosity": "medium",
+      "variant": "high"
+    },
+    "scout": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-luna",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "evidence-research": "allow"
+        },
+        "task": "deny"
+      },
+      "reasoningEffort": "medium",
+      "reasoningSummary": "auto",
+      "steps": 8,
+      "textVerbosity": "low",
+      "variant": "medium"
+    },
+    "security": {
+      "description": "Explicit defensive security workflow for real trust boundaries, attacker-controlled inputs, authorization, secrets, or exposure.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-sol",
+      "permission": {
+        "bash": "deny",
+        "edit": "deny",
+        "external_directory": "deny",
+        "semgrep_*": "allow",
+        "skill": {
+          "*": "deny",
+          "authorized-security": "allow",
+          "evidence-research": "allow",
+          "lean-ctx": "allow",
+          "repo-onboarding": "allow",
+          "verification-gate": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "forensics": "allow",
+          "incident-review": "allow",
+          "repo-analyst": "allow",
+          "researcher": "allow",
+          "reverse-engineer": "allow",
+          "security-review": "allow"
+        }
+      },
+      "prompt": "{file:prompts/security.txt}",
+      "reasoningEffort": "high",
+      "reasoningSummary": "detailed",
+      "steps": 26,
+      "textVerbosity": "medium",
+      "variant": "high"
+    },
+    "summary": {
+      "model": "openai/gpt-5.6-luna",
+      "reasoningEffort": "medium",
+      "textVerbosity": "low",
+      "variant": "medium"
+    },
+    "title": {
+      "model": "openai/gpt-5.6-luna",
+      "reasoningEffort": "medium",
+      "textVerbosity": "low",
+      "variant": "medium"
+    }
   },
+  "autoupdate": "notify",
   "compaction": {
     "auto": true,
     "prune": true,
     "reserved": 16000
+  },
+  "default_agent": "build",
+  "mcp": {
+    "context7": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "gh_grep": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    },
+    "lean-ctx": {
+      "command": [
+        "/home/sitter/.local/bin/lean-ctx"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "playwright": {
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@0.0.75"
+      ],
+      "enabled": false,
+      "timeout": 30000,
+      "type": "local"
+    },
+    "semgrep": {
+      "command": [
+        "semgrep",
+        "mcp"
+      ],
+      "enabled": false,
+      "timeout": 60000,
+      "type": "local"
+    }
+  },
+  "model": "openai/gpt-5.6-terra",
+  "permission": {
+    "*": "ask",
+    "bash": "deny",
+    "context7_*": "deny",
+    "doom_loop": "ask",
+    "edit": "ask",
+    "external_directory": "deny",
+    "fetch_*": "deny",
+    "gh_grep_*": "deny",
+    "glob": "deny",
+    "grep": "deny",
+    "list": "allow",
+    "lsp": "allow",
+    "playwright_*": "deny",
+    "question": "allow",
+    "read": "deny",
+    "semgrep_*": "deny",
+    "skill": {
+      "*": "deny"
+    },
+    "task": "deny",
+    "todowrite": "allow",
+    "webfetch": "ask",
+    "websearch": "ask"
+  },
+  "plugin": [],
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-5.6-luna": {
+          "options": {
+            "include": [
+              "reasoning.encrypted_content"
+            ],
+            "reasoningEffort": "medium",
+            "reasoningSummary": "auto",
+            "store": false,
+            "textVerbosity": "low"
+          },
+          "variants": {
+            "fast": {
+              "disabled": true
+            },
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "disabled": true
+            },
+            "max": {
+              "reasoningEffort": "max",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "low"
+            },
+            "minimal": {
+              "disabled": true
+            },
+            "none": {
+              "disabled": true
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.6-sol": {
+          "options": {
+            "include": [
+              "reasoning.encrypted_content"
+            ],
+            "reasoningEffort": "high",
+            "reasoningSummary": "auto",
+            "store": false,
+            "textVerbosity": "medium"
+          },
+          "variants": {
+            "fast": {
+              "disabled": true
+            },
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "disabled": true
+            },
+            "max": {
+              "reasoningEffort": "max",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "minimal": {
+              "disabled": true
+            },
+            "none": {
+              "disabled": true
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.6-terra": {
+          "options": {
+            "include": [
+              "reasoning.encrypted_content"
+            ],
+            "reasoningEffort": "medium",
+            "reasoningSummary": "auto",
+            "store": false,
+            "textVerbosity": "medium"
+          },
+          "variants": {
+            "fast": {
+              "disabled": true
+            },
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "disabled": true
+            },
+            "max": {
+              "reasoningEffort": "max",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "minimal": {
+              "disabled": true
+            },
+            "none": {
+              "disabled": true
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        }
+      }
+    }
+  },
+  "share": "disabled",
+  "small_model": "openai/gpt-5.6-luna",
+  "subagent_depth": 1,
+  "tool_output": {
+    "max_bytes": 40000,
+    "max_lines": 800
   },
   "watcher": {
     "ignore": [
@@ -29,330 +607,5 @@
       "**/.gradle/**",
       "**/.idea/**"
     ]
-  },
-  "instructions": ["AGENTS.md"],
-  "provider": {
-    "openai": {
-      "models": {
-        "gpt-5.6-sol": {
-          "options": {
-            "reasoningEffort": "xhigh",
-            "reasoningSummary": "detailed",
-            "textVerbosity": "medium",
-            "include": ["reasoning.encrypted_content"],
-            "store": false
-          },
-          "variants": {
-            "medium": {"reasoningEffort": "medium", "reasoningSummary": "auto", "textVerbosity": "medium"},
-            "high": {"reasoningEffort": "high", "reasoningSummary": "detailed", "textVerbosity": "medium"},
-            "xhigh": {"reasoningEffort": "xhigh", "reasoningSummary": "detailed", "textVerbosity": "medium"},
-            "max": {"reasoningEffort": "max", "reasoningSummary": "detailed", "textVerbosity": "medium"},
-            "none": {"disabled": true},
-            "minimal": {"disabled": true},
-            "low": {"disabled": true},
-            "fast": {"disabled": true}
-          }
-        },
-        "gpt-5.6-terra": {
-          "options": {
-            "reasoningEffort": "high",
-            "reasoningSummary": "auto",
-            "textVerbosity": "medium",
-            "include": ["reasoning.encrypted_content"],
-            "store": false
-          },
-          "variants": {
-            "medium": {"reasoningEffort": "medium", "reasoningSummary": "auto", "textVerbosity": "medium"},
-            "high": {"reasoningEffort": "high", "reasoningSummary": "auto", "textVerbosity": "medium"},
-            "xhigh": {"reasoningEffort": "xhigh", "reasoningSummary": "detailed", "textVerbosity": "medium"},
-            "max": {"reasoningEffort": "max", "reasoningSummary": "detailed", "textVerbosity": "medium"},
-            "none": {"disabled": true},
-            "minimal": {"disabled": true},
-            "low": {"disabled": true},
-            "fast": {"disabled": true}
-          }
-        },
-        "gpt-5.6-luna": {
-          "options": {
-            "reasoningEffort": "medium",
-            "reasoningSummary": "auto",
-            "textVerbosity": "low",
-            "include": ["reasoning.encrypted_content"],
-            "store": false
-          },
-          "variants": {
-            "medium": {"reasoningEffort": "medium", "reasoningSummary": "auto", "textVerbosity": "low"},
-            "high": {"reasoningEffort": "high", "reasoningSummary": "auto", "textVerbosity": "medium"},
-            "xhigh": {"reasoningEffort": "xhigh", "reasoningSummary": "detailed", "textVerbosity": "medium"},
-            "max": {"reasoningEffort": "max", "reasoningSummary": "detailed", "textVerbosity": "medium"},
-            "none": {"disabled": true},
-            "minimal": {"disabled": true},
-            "low": {"disabled": true},
-            "fast": {"disabled": true}
-          }
-        }
-      }
-    }
-  },
-  "permission": {
-    "*": "ask",
-    "read": {
-      "*": "allow",
-      ".env": "deny",
-      ".env.*": "deny",
-      "**/.env": "deny",
-      "**/.env.*": "deny",
-      "**/*credentials*": "ask",
-      "**/*secret*": "ask",
-      "**/*.pem": "ask",
-      "**/*.key": "ask"
-    },
-    "glob": "allow",
-    "grep": "allow",
-    "list": "allow",
-    "lsp": "allow",
-    "skill": {"*": "deny"},
-    "todowrite": "allow",
-    "question": "allow",
-    "task": "allow",
-    "webfetch": "ask",
-    "websearch": "ask",
-    "external_directory": "deny",
-    "edit": "ask",
-    "bash": {
-      "*": "ask",
-      "git push*": "ask",
-      "git reset --hard*": "ask",
-      "git status*": "allow",
-      "git diff*": "allow",
-      "git log*": "allow",
-      "git show*": "allow",
-      "git branch*": "allow",
-      "git ls-files*": "allow",
-      "git rev-parse*": "allow",
-      "pwd": "allow",
-      "ls*": "allow",
-      "tree*": "allow",
-      "rg *": "allow",
-      "fd *": "allow",
-      "find *": "allow",
-      "wc *": "allow",
-      "file *": "allow",
-      "stat *": "allow",
-      "npm test*": "allow",
-      "npm run test*": "allow",
-      "npm run lint*": "allow",
-      "npm run typecheck*": "allow",
-      "pnpm test*": "allow",
-      "pnpm lint*": "allow",
-      "bun test*": "allow",
-      "cargo test*": "allow",
-      "cargo check*": "allow",
-      "go test*": "allow",
-      "go vet*": "allow",
-      "pytest*": "allow",
-      "python -m pytest*": "allow",
-      "ruff check*": "allow",
-      "biome check*": "allow",
-      "shellcheck *": "allow",
-      "shfmt -d *": "allow",
-      "./gradlew test*": "allow",
-      "./gradlew lint*": "allow",
-      "sudo *": "deny",
-      "sudo": "deny",
-      "doas *": "deny",
-      "su *": "deny",
-      "rm -rf *": "deny",
-      "rm -fr *": "deny",
-      "git clean *": "deny",
-      "git push --force*": "deny",
-      "git push -f*": "deny"
-    },
-    "context7_*": "deny",
-    "gh_grep_*": "deny",
-    "fetch_*": "deny",
-    "playwright_*": "deny",
-    "semgrep_*": "deny"
-  },
-  "agent": {
-    "build": {
-      "description": "Primary implementation orchestrator. Delegates research, exploration, testing, and independent review based on task complexity.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-terra",
-      "variant": "high",
-      "reasoningEffort": "high",
-      "reasoningSummary": "auto",
-      "textVerbosity": "medium",
-      "steps": 32,
-      "prompt": "{file:prompts/build.txt}",
-      "permission": {
-        "edit": "allow",
-        "external_directory": "deny",
-        "skill": {
-          "*": "deny",
-          "repo-onboarding": "allow",
-          "systematic-debugging": "allow",
-          "verification-gate": "allow",
-          "safe-refactor": "allow",
-          "agent-handoff": "allow"
-        },
-        "task": {
-          "*": "deny",
-          "explore": "allow",
-          "scout": "allow",
-          "architect": "allow",
-          "implementer": "allow",
-          "debugger": "allow",
-          "tester": "allow",
-          "reviewer": "allow",
-          "spec-reviewer": "allow",
-          "test-strategist": "allow",
-          "skeptic": "allow",
-          "simplicity-reviewer": "allow",
-          "performance-reviewer": "allow",
-          "security-review": "allow",
-          "researcher": "allow",
-          "docs-writer": "allow",
-          "infra-reviewer": "allow",
-          "sysadmin": "allow",
-          "ctf-lead": "allow",
-          "setup-maintainer": "allow"
-        }
-      }
-    },
-    "plan": {
-      "description": "Read-only planning and architecture orchestrator for large, uncertain, or high-impact changes.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-sol",
-      "variant": "xhigh",
-      "reasoningEffort": "xhigh",
-      "reasoningSummary": "detailed",
-      "textVerbosity": "medium",
-      "steps": 22,
-      "prompt": "{file:prompts/plan.txt}",
-      "permission": {
-        "edit": "deny",
-        "external_directory": "deny",
-        "bash": "deny",
-        "skill": {"*": "deny", "repo-onboarding": "allow", "evidence-research": "allow", "agent-handoff": "allow"},
-        "task": {"*": "deny", "explore": "allow", "scout": "allow", "architect": "allow", "researcher": "allow", "skeptic": "allow", "security-review": "allow", "performance-reviewer": "allow"}
-      }
-    },
-    "project": {
-      "description": "Leads high-impact, cross-cutting implementation with independent review and rollback planning.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-sol",
-      "variant": "xhigh",
-      "reasoningEffort": "xhigh",
-      "reasoningSummary": "detailed",
-      "textVerbosity": "medium",
-      "steps": 44,
-      "prompt": "{file:prompts/project.txt}",
-      "permission": {"edit": "allow", "external_directory": "deny", "task": {"*": "deny", "explore": "allow", "repo-analyst": "allow", "architect": "allow", "implementer": "allow", "debugger": "allow", "tester": "allow", "reviewer": "allow", "spec-reviewer": "allow", "test-strategist": "allow", "skeptic": "allow", "simplicity-reviewer": "allow", "performance-reviewer": "allow", "security-review": "allow", "researcher": "allow", "docs-writer": "allow", "infra-reviewer": "allow", "designer": "allow"}}},
-    "research": {
-      "description": "Researches current APIs, technical questions, and implementation choices using primary sources.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-terra",
-      "variant": "high",
-      "reasoningEffort": "high",
-      "reasoningSummary": "auto",
-      "textVerbosity": "medium",
-      "steps": 24,
-      "prompt": "{file:prompts/research.txt}",
-      "permission": {"edit": "deny", "bash": "deny", "external_directory": "deny", "webfetch": "allow", "websearch": "allow", "context7_*": "allow", "gh_grep_*": "allow", "task": {"*": "deny", "scout": "allow", "researcher": "allow", "work-research": "allow", "repo-analyst": "allow"}}},
-    "browser": {
-      "description": "Verifies browser flows, console output, network behavior, and accessibility.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-terra",
-      "variant": "high",
-      "reasoningEffort": "high",
-      "reasoningSummary": "auto",
-      "textVerbosity": "medium",
-      "steps": 24,
-      "prompt": "{file:prompts/browser.txt}",
-      "permission": {"edit": "deny", "bash": "deny", "external_directory": "deny", "playwright_*": "allow", "task": {"*": "deny", "browser-checker": "allow", "designer": "allow", "tester": "allow", "researcher": "allow"}}},
-    "security": {
-      "description": "Performs defensive security review of code, configuration, and trust boundaries.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-sol",
-      "variant": "max",
-      "reasoningEffort": "max",
-      "reasoningSummary": "detailed",
-      "textVerbosity": "medium",
-      "steps": 36,
-      "prompt": "{file:prompts/security.txt}",
-      "permission": {"edit": "deny", "bash": "deny", "external_directory": "deny", "semgrep_*": "allow", "task": {"*": "deny", "security-review": "allow", "forensics": "allow", "reverse-engineer": "allow", "incident-review": "allow", "researcher": "allow", "repo-analyst": "allow"}}},
-    "ctf": {
-      "description": "Coordinates authorized CTF and lab work across web, crypto, reversing, pwn, and forensics.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-sol",
-      "variant": "max",
-      "reasoningEffort": "max",
-      "reasoningSummary": "detailed",
-      "textVerbosity": "medium",
-      "steps": 44,
-      "prompt": "{file:prompts/ctf.txt}",
-      "permission": {"edit": "ask", "bash": {"*": "ask", "sudo *": "deny", "sudo": "deny", "doas *": "deny", "su *": "deny", "rm -rf *": "deny", "rm -fr *": "deny", "git clean *": "deny", "git push*": "deny"}, "external_directory": "deny", "semgrep_*": "allow", "task": {"*": "deny", "ctf-lead": "allow", "forensics": "allow", "reverse-engineer": "allow", "researcher": "allow", "security-review": "allow"}}},
-    "infra": {
-      "description": "Plans and reviews infrastructure, containers, networking, deployment, and rollback.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-sol",
-      "variant": "xhigh",
-      "reasoningEffort": "xhigh",
-      "reasoningSummary": "detailed",
-      "textVerbosity": "medium",
-      "steps": 38,
-      "prompt": "{file:prompts/infra.txt}",
-      "permission": {"edit": "ask", "bash": {"*": "ask", "sudo *": "deny", "sudo": "deny", "doas *": "deny", "su *": "deny", "rm -rf *": "deny", "rm -fr *": "deny", "git clean *": "deny", "git push*": "deny"}, "external_directory": "deny", "task": {"*": "deny", "infra-reviewer": "allow", "sysadmin": "allow", "incident-review": "allow", "security-review": "allow", "researcher": "allow"}}},
-    "docs": {
-      "description": "Creates and maintains precise technical documentation from verified behavior.",
-      "mode": "primary",
-      "model": "openai/gpt-5.6-luna",
-      "variant": "high",
-      "reasoningEffort": "high",
-      "reasoningSummary": "auto",
-      "textVerbosity": "medium",
-      "steps": 22,
-      "prompt": "{file:prompts/docs.txt}",
-      "permission": {"edit": "ask", "bash": "deny", "external_directory": "deny", "context7_*": "allow", "task": {"*": "deny", "docs-writer": "allow", "work-research": "allow", "researcher": "allow", "reviewer": "allow"}}},
-    "explore": {
-      "mode": "subagent",
-      "model": "openai/gpt-5.6-luna",
-      "variant": "medium",
-      "reasoningEffort": "medium",
-      "reasoningSummary": "auto",
-      "textVerbosity": "low",
-      "steps": 8,
-      "permission": {"edit": "deny", "bash": "deny", "task": "deny", "external_directory": "deny", "skill": {"*": "deny", "repo-onboarding": "allow"}}
-    },
-    "scout": {
-      "mode": "subagent",
-      "model": "openai/gpt-5.6-luna",
-      "variant": "high",
-      "reasoningEffort": "high",
-      "reasoningSummary": "auto",
-      "textVerbosity": "low",
-      "steps": 10,
-      "permission": {"edit": "deny", "bash": "deny", "task": "deny", "external_directory": "deny", "skill": {"*": "deny", "evidence-research": "allow"}}
-    },
-    "general": {
-      "mode": "subagent",
-      "model": "openai/gpt-5.6-terra",
-      "variant": "high",
-      "reasoningEffort": "high",
-      "reasoningSummary": "auto",
-      "textVerbosity": "medium",
-      "steps": 14
-    },
-    "title": {"model": "openai/gpt-5.6-luna", "variant": "medium", "reasoningEffort": "medium", "textVerbosity": "low"},
-    "summary": {"model": "openai/gpt-5.6-luna", "variant": "medium", "reasoningEffort": "medium", "textVerbosity": "low"},
-    "compaction": {"model": "openai/gpt-5.6-terra", "variant": "high", "reasoningEffort": "high", "textVerbosity": "low"}
-  },
-  "mcp": {
-    "context7": {"type": "remote", "url": "https://mcp.context7.com/mcp", "enabled": false},
-    "gh_grep": {"type": "remote", "url": "https://mcp.grep.app", "enabled": false},
-    "playwright": {"type": "local", "command": ["npx", "-y", "@playwright/mcp@0.0.75"], "enabled": false, "timeout": 30000},
-    "semgrep": {"type": "local", "command": ["semgrep", "mcp"], "enabled": false, "timeout": 60000}
-  },
-  "plugin": []
+  }
 }

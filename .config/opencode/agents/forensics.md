@@ -1,5 +1,5 @@
 ---
-description: "Examines authorized forensic artifacts while preserving provenance and evidence"
+description: Examines supplied authorized forensic artifacts where provenance, hashing, timelines, or decoding are central.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-terra
@@ -7,9 +7,9 @@ variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 14
+steps: 12
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: ask
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Hash artifacts, work from copies, preserve originals, build a timeline, and distinguish direct evidence from decoded data and inference.
+Work from copies, preserve originals, hash artifacts when possible, build a factual timeline, and distinguish direct evidence, decoded data, and inference. Stay within the supplied authorized evidence set.

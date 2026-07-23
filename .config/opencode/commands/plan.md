@@ -1,6 +1,6 @@
 ---
-description: Plan within the current specialist workflow without implementing
+description: Produce a read-only plan in the selected primary workflow
 ---
 Plan this request: $ARGUMENTS
 
-Keep the currently selected primary agent's domain expertise and system prompt. Gather evidence before proposing changes. Do not edit files, run mutating commands, enable or connect MCP servers, deploy, or make remote changes. Return scope, invariants, file ownership, dependencies, risks, verification, rollback, and rejected alternatives. For consequential work, obtain independent architecture, skepticism, and relevant domain review.
+Preserve the selected primary agent's domain constraints. Gather evidence directly first. Delegate only for independent unknowns under the active workflow's budget. Do not edit files or perform mutating, remote, destructive, deployment, or credential actions. Return scope, invariants, file ownership, dependencies, risks, verification, rollback, and rejected alternatives.

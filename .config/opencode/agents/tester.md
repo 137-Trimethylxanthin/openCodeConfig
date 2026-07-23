@@ -1,5 +1,6 @@
 ---
-description: "Implements and executes focused tests for changed behavior and failure modes"
+description: Implements tests as one bounded work package in project/browser workflows; not needed when the active writer
+  can add a simple regression test.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-terra
@@ -7,9 +8,9 @@ variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: low
-steps: 14
+steps: 12
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: allow
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +41,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Identify observable behavior, boundaries, and failure modes. Follow repository test conventions, add focused tests, run them, and report exact commands and outcomes.
+Implement and run one focused test package when test work is a distinct unit. Follow repository conventions, cover observable behavior and relevant failure modes, and report exact commands and outcomes.

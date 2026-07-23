@@ -1,15 +1,15 @@
 ---
-description: "Finds unnecessary abstraction, duplication, and overengineering"
+description: Use only when a large diff introduces new abstraction layers, broad refactoring, or duplicated mechanisms.
 mode: subagent
 hidden: true
-model: openai/gpt-5.6-terra
-variant: medium
-reasoningEffort: medium
+model: openai/gpt-5.6-luna
+variant: high
+reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: low
-steps: 8
+steps: 6
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Review for avoidable complexity, speculative abstractions, duplicated mechanisms, and changes larger than required. Recommend simplifications without sacrificing correctness.
+Review an already substantial change for avoidable abstractions, duplicated mechanisms, speculative generality, and scope larger than required. Recommend simplifications without sacrificing correctness.

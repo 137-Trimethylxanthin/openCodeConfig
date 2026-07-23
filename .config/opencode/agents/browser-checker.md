@@ -1,15 +1,15 @@
 ---
-description: "Verifies browser flows, console output, network behavior, and accessibility"
+description: Reproduces a concrete browser flow with connected browser tools; not for repository-only UI questions.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-terra
-variant: high
-reasoningEffort: high
+variant: medium
+reasoningEffort: medium
 reasoningSummary: auto
 textVerbosity: medium
-steps: 14
+steps: 10
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,10 +20,10 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: deny
   bash: deny
 ---
-Use browser tools only when available. Record exact navigation, observed state, console/network evidence, and reproducible failures. Do not modify source code.
+Use browser tools only when available. Reproduce one concrete flow and record navigation, visible state, console/network evidence, accessibility findings, and exact failure steps. Do not modify source code.

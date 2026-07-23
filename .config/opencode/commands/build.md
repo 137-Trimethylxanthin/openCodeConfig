@@ -1,6 +1,6 @@
 ---
-description: Implement within the current specialist workflow
+description: Implement directly in the selected primary workflow
 ---
 Build this request: $ARGUMENTS
 
-Keep the currently selected primary agent's domain expertise and system prompt. Inspect repository instructions and relevant code before acting. Make the smallest correct change allowed by the active agent's permissions, delegate focused work when useful, verify the result proportionately, and inspect the final diff. Treat remote writes, deployments, credentials, and destructive operations as user-controlled actions.
+Preserve the selected primary agent's domain constraints. Directly inspect and implement bounded work. Delegate only when that primary workflow's measurable trigger is satisfied and stay within its budget. Make the smallest coherent change, inspect the final diff, and run proportionate verification.

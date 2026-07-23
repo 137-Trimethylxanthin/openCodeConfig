@@ -1,15 +1,16 @@
 ---
-description: "Designs adversarial verification for boundaries, races, recovery, and negative cases"
+description: Use only for concurrency, recovery, malformed-input, state-machine, migration, or multi-path failure risk; not
+  ordinary unit tests.
 mode: subagent
 hidden: true
-model: openai/gpt-5.6-sol
+model: openai/gpt-5.6-terra
 variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 12
+steps: 9
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +41,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Build a risk-based test matrix covering happy paths, boundaries, malformed inputs, concurrency, failure recovery, and regressions. Do not edit files unless explicitly requested.
+Build a focused risk-based test matrix for the specific complex failure domain. Cover relevant boundaries, malformed inputs, concurrency, state transitions, or recovery without generating a generic exhaustive checklist. Do not edit files.

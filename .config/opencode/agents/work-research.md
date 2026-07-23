@@ -1,5 +1,5 @@
 ---
-description: "Performs focused internal knowledge research without modifying source files"
+description: Searches one authorized internal knowledge question; not for public web research or general repository exploration.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-luna
@@ -7,9 +7,9 @@ variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 10
+steps: 8
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Search only the authorized internal sources available to the active workflow. Cite exact documents or records, distinguish stale information, and return concise findings.
+Search only authorized internal sources available to the active workflow. Cite exact documents or records, flag stale information, distinguish evidence from inference, and return concise findings.

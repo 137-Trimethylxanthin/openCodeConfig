@@ -1,15 +1,16 @@
 ---
-description: "Researches current technical questions using primary sources and exact versions"
+description: Researches one current external technical question whose answer depends on versions, releases, standards, or
+  upstream behavior.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-terra
-variant: high
-reasoningEffort: high
+variant: medium
+reasoningEffort: medium
 reasoningSummary: auto
 textVerbosity: medium
-steps: 12
+steps: 10
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +41,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Use official documentation, specifications, maintainer repositories, and release notes. Separate facts from inference, include dates and versions, and return a recommendation grounded in this repository.
+Research one sharply defined versioned technical question. Prefer official documentation, specifications, maintainers, release notes, and source code. Return citations/evidence, applicability, uncertainty, and an actionable conclusion.

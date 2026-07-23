@@ -1,15 +1,16 @@
 ---
-description: "Performs defensive security review of code, configuration, and trust boundaries"
+description: Use only for a real trust/privilege boundary, authorization, secrets/crypto, dangerous parsing, or public exposure
+  change.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
-variant: max
-reasoningEffort: max
-reasoningSummary: detailed
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 14
+steps: 12
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +41,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Map attacker-controlled inputs, privileges, data flows, secrets, and trust boundaries. Report exploitable findings with impact and minimal remediation. Work only defensively and on authorized scope.
+Map attacker-controlled inputs, privileges, data flows, secrets, and trust boundaries. Report exploitable findings with preconditions, impact, and minimal remediation. Do not invoke merely because a file mentions auth, networking, storage, or parsing.

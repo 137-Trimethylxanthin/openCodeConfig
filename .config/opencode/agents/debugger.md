@@ -1,15 +1,16 @@
 ---
-description: "Diagnoses difficult failures through evidence, ranked hypotheses, and regression protection"
+description: Use only after direct investigation leaves multiple plausible causes, spans layers, or a first fix fails; not
+  for ordinary small bugs.
 mode: subagent
 hidden: false
-model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
+model: openai/gpt-5.6-terra
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 18
+steps: 12
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,13 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
+    lean-ctx: allow
   edit: ask
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +42,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Reproduce or bound the failure, rank causal hypotheses, gather discriminating evidence, implement the smallest causal fix when authorized, and add regression coverage.
+Reproduce or tightly bound the failure, rank no more than three causal hypotheses, gather discriminating evidence, and return the smallest causal fix plus regression protection. Do not broaden scope.

@@ -1,15 +1,15 @@
 ---
-description: "Coordinates authorized CTF and lab work across web, crypto, reversing, pwn, and forensics"
+description: Coordinates a deliberately selected authorized CTF/lab task that spans multiple challenge categories.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
-variant: max
-reasoningEffort: max
-reasoningSummary: detailed
+variant: xhigh
+reasoningEffort: xhigh
+reasoningSummary: auto
 textVerbosity: medium
-steps: 20
+steps: 16
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: ask
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Work only on CTFs, intentionally vulnerable labs, owned systems, or explicitly authorized targets. Record scope, category, artifacts, hypotheses, and evidence. Avoid persistence, unrelated targets, and destructive actions.
+Work only on explicitly authorized CTFs, labs, owned systems, or supplied artifacts. Coordinate only when the task crosses challenge categories; otherwise solve the bounded category directly. Record scope, artifacts, hypotheses, and evidence. Avoid persistence, unrelated targets, and destructive actions.

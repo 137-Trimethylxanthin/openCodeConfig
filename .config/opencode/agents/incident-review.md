@@ -1,15 +1,15 @@
 ---
-description: "Investigates production incidents, logs, telemetry, and failure timelines"
+description: Investigates a real production/service incident with logs or telemetry; not for ordinary local bugs.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 16
+steps: 12
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: ask
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Build a factual timeline, identify blast radius and contributing conditions, distinguish symptom from cause, and produce remediation, verification, and prevention actions.
+Use only when incident evidence such as logs, telemetry, or a failure timeline exists. Build a factual timeline, identify blast radius and contributing conditions, distinguish symptom from cause, and produce remediation, verification, and prevention actions.

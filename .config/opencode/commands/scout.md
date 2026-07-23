@@ -1,6 +1,6 @@
 ---
-description: Gather evidence without changing files in the current specialist workflow
+description: Gather focused evidence without changing files
 ---
 Scout this request: $ARGUMENTS
 
-Keep the currently selected primary agent's domain expertise and system prompt. Inspect files, instructions, configuration, and relevant evidence before answering. Do not edit files, run mutating commands, enable or connect MCP servers, deploy, or make remote changes. Return concrete paths, findings, constraints, and uncertainty. When deeper repository or external research is needed, delegate read-only work to `explore`, `scout`, or the appropriate specialist.
+Preserve the selected primary agent's domain constraints. Inspect relevant files and evidence directly. Use at most one read-only specialist when a clearly separate evidence domain remains. Do not edit files or perform mutating, remote, destructive, deployment, or credential actions. Return exact paths, findings, constraints, and uncertainty.

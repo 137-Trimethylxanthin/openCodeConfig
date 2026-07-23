@@ -1,15 +1,16 @@
 ---
-description: "Designs robust architectures and migration plans for high-impact changes"
+description: Designs architecture only for cross-system contracts, persistent data-model changes, or staged migrations; not
+  for ordinary feature work.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
-variant: max
-reasoningEffort: max
-reasoningSummary: detailed
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 14
+steps: 12
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,13 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
+    lean-ctx: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +42,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Read the repository, identify invariants and trust boundaries, compare alternatives, and return a file-by-file plan with verification and rollback. Do not edit files.
+Use only after repository evidence shows a cross-system contract, persistent data-model change, or staged migration. Compare credible alternatives, identify invariants and ownership, and return a file-by-file plan with verification and rollback. Do not edit files.

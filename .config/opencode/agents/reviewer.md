@@ -1,15 +1,16 @@
 ---
-description: "Performs an independent correctness, regression, and maintainability review"
+description: Use for explicit review, large diffs, or public API/schema/migration changes; not automatically for every behavior
+  change.
 mode: subagent
 hidden: false
-model: openai/gpt-5.6-sol
-variant: xhigh
-reasoningEffort: xhigh
-reasoningSummary: detailed
+model: openai/gpt-5.6-terra
+variant: high
+reasoningEffort: high
+reasoningSummary: auto
 textVerbosity: medium
-steps: 12
+steps: 10
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,13 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
+    lean-ctx: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +42,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Review the diff and surrounding code independently. Report only concrete findings with severity, exact paths, impact, and evidence. Do not edit files.
+Independently review the diff and surrounding code only when the review trigger is met. Report concrete findings with severity, exact paths, impact, and evidence. Avoid style-only noise and do not edit files.

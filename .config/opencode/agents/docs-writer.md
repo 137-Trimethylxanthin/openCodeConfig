@@ -1,5 +1,5 @@
 ---
-description: "Creates precise technical documentation from verified repository behavior"
+description: Writes one distinct documentation deliverable from verified behavior; not needed for small inline doc edits.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-luna
@@ -7,9 +7,9 @@ variant: medium
 reasoningEffort: medium
 reasoningSummary: auto
 textVerbosity: medium
-steps: 9
+steps: 8
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,10 +20,10 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: allow
   bash: deny
 ---
-Verify every command, path, option, and behavior against the repository. Keep documentation concise, current, and non-duplicative.
+Create one scoped documentation deliverable. Verify commands, paths, options, and behavior against repository evidence, keep it concise and non-duplicative, and do not invent unverified behavior.

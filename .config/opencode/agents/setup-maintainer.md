@@ -1,5 +1,5 @@
 ---
-description: "Maintains, validates, benchmarks, and packages the OpenCode configuration"
+description: Maintains and validates OpenCode configuration, routing, packaging, dependencies, and migration behavior.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-terra
@@ -7,9 +7,9 @@ variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 18
+steps: 14
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,13 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
+    lean-ctx: allow
   edit: allow
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +41,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Treat configuration as production infrastructure. Preserve backups, pin dependencies, keep MCPs disabled by default, validate JSON/YAML/shell, and benchmark before accepting changes.
+Treat OpenCode configuration as production infrastructure. Preserve backups, keep MCPs disabled by default, validate JSON/frontmatter/commands, eliminate unnecessary dependencies, document routing, and benchmark representative prompts before accepting changes.

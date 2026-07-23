@@ -1,15 +1,15 @@
 ---
-description: "Analyzes supplied binaries and authorized lab artifacts using static-first methods"
+description: Analyzes a supplied authorized binary or lab artifact where static/dynamic reverse engineering is central.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-sol
 variant: xhigh
 reasoningEffort: xhigh
-reasoningSummary: detailed
+reasoningSummary: auto
 textVerbosity: medium
-steps: 18
+steps: 14
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: ask
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence. Do not run unknown binaries outside an appropriate sandbox.
+Work only on supplied or explicitly authorized binaries and lab artifacts. Start with file type, architecture, protections, imports, strings, and control flow. Separate static and dynamic evidence and do not run unknown binaries outside an appropriate sandbox.

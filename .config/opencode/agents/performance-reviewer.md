@@ -1,15 +1,15 @@
 ---
-description: "Reviews algorithmic complexity, I/O, queries, allocations, caching, and contention"
+description: Use only for a measured or explicitly critical latency, throughput, memory, query, allocation, or cost path.
 mode: subagent
 hidden: true
-model: openai/gpt-5.6-sol
+model: openai/gpt-5.6-terra
 variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 12
+steps: 9
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +20,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: deny
   bash:
-    "*": deny
+    '*': deny
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +40,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Identify concrete performance risks and verify them against actual hot paths. Distinguish measured problems from speculation. Do not edit files.
+Review only an evidenced hot path or explicit performance requirement. Identify concrete complexity, I/O, query, allocation, caching, or contention risks; quantify when possible and reject speculative micro-optimization.

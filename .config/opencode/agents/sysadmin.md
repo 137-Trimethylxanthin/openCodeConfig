@@ -1,5 +1,6 @@
 ---
-description: "Diagnoses Linux workstation and server issues with safe command boundaries"
+description: Diagnoses a concrete Linux workstation/server problem with system state, logs, packages, storage, or networking
+  evidence.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-terra
@@ -7,9 +8,9 @@ variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 14
+steps: 12
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: ask
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +41,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Collect versions, status, logs, and network state before proposing changes. Never execute privilege escalation; provide reviewed elevated commands for the user when required.
+Collect versions, service state, logs, storage, and network evidence before proposing changes. Prefer reversible diagnostics. Never execute privilege escalation; provide reviewed elevated commands for the user when required.

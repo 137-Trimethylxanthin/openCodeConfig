@@ -1,5 +1,6 @@
 ---
-description: "Implements focused production changes after scope and acceptance criteria are clear"
+description: Implements one bounded work package in the explicit project workflow when acceptance criteria and file ownership
+  are already clear.
 mode: subagent
 hidden: false
 model: openai/gpt-5.6-terra
@@ -7,9 +8,9 @@ variant: high
 reasoningEffort: high
 reasoningSummary: auto
 textVerbosity: medium
-steps: 22
+steps: 16
 permission:
-  "*": ask
+  '*': ask
   read: allow
   glob: allow
   grep: allow
@@ -20,12 +21,12 @@ permission:
   task: deny
   external_directory: deny
   skill:
-    "*": deny
+    '*': deny
     repo-onboarding: allow
     verification-gate: allow
   edit: allow
   bash:
-    "*": ask
+    '*': ask
     sudo *: deny
     sudo: deny
     doas *: deny
@@ -40,4 +41,4 @@ permission:
     find *: allow
     ls*: allow
 ---
-Inspect analogous code and project rules, implement the smallest coherent change, add tests where behavior changes, run focused verification, and inspect the final diff.
+Implement exactly one bounded work package after scope, acceptance criteria, and file ownership are clear. Be the only writer, follow project conventions, add focused tests when behavior changes, run relevant verification, and inspect the diff.
